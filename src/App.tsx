@@ -9,7 +9,6 @@ interface HelloWorldProps {
 }
 
 const HelloWrold = styled.div`
-
 color:  royalblue;
 background-color: ${(props:HelloWorldProps) => props.active ? '#f41' : 'gray'};
 padding: 12px;
