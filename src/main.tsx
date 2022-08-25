@@ -54,7 +54,7 @@ table {
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   
-  <Provider store={store}>
+ <Provider store={store}>
   <GlobalStyle />
     <App />
   </Provider>

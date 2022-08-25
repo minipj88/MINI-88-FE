@@ -1,74 +1,31 @@
-import { ChangeEvent, useState } from "react";
-import styled from "styled-components"
-import { helloWorld } from "./store/slices/ExampleSlice";
-import { useAppDispatch, useAppSelector } from "./store/store";
-
-interface HelloWorldProps {
-  active: boolean
-  disabled?: boolean;
-}
-
-const HelloWrold = styled.div`
-color:  royalblue;
-background-color: ${(props:HelloWorldProps) => props.active ? '#f41' : 'gray'};
-padding: 12px;
-  p{
-    font-size: 24px;
-    color:white;
-    font-weight:bold;
-  }
- 
-`
-const Body = styled.p`
-  color: white;
-  background-color: greenyellow;
-  width: 420px;
-  margin: auto;
-  text-align:center;
-  padding: 10px 0px;
-  border-radius: 10px;
-`
-
-const MainButton = styled.button`
-  padding: 4px;
-  width: fit-content;
-  height: fit-content;
-  font-weight:bold;
-  border: none;
-  background-color:white;
-  color: green;
-  border-radius: 10px;
-  border:none;
-  cursor:pointer;
-`
+import {useState} from 'react'
+import {BrowserRouter,Routes,Route,Navigate} from 'react-router-dom'
+import AllProducts from './pages/AllProducts'
+import Cart from './pages/Cart'
+import CreditScore from './pages/CreditScore'
+import Home from './pages/Home'
+import OnBoarding from './pages/OnBoarding'
+import Profile from './pages/Profile'
+import Signin from './pages/Signin'
+import Signup from './pages/Signup'
 
 function App() {
-  const [active,setActive] = useState(false);
-  const [myName,setMyname] = useState('')
-  const dispatch = useAppDispatch()
-  const exampleState = useAppSelector(state => state.example)
 
-  const buttonClickHandler = () => {
-    setActive(prev => !prev)
-    dispatch(helloWorld({myname:myName}))
-  }
-
-  const mynameChangeHandler = (e:ChangeEvent<HTMLInputElement>) => {
-    const {currentTarget:{value}} = e
-    setMyname(value)
-  }
-
+  const [userLoginState,setUserLoginState] = useState(false)
   return (
-   <HelloWrold active={active}>
-    Hello world!
-    {exampleState.allString && <p>{exampleState.allString}</p>}
-    <Body>
-      Frontend
-    </Body>
-    <input type="text" value={myName} onChange={mynameChangeHandler} />
-    <MainButton onClick={buttonClickHandler}>안녕 난 버튼</MainButton>
-    
-    </HelloWrold>
+   <BrowserRouter>
+   <Routes>
+    <Route path="/" element={<Home/>} />
+    <Route path="/allproducts" element={<AllProducts/>} />
+    <Route path="/creditscore" element={<CreditScore/>} />
+    <Route path="/cart" element={<Cart/>} />
+    <Route path="/profile" element={<Profile/>} />
+    <Route path="/signup" element={<Signup/>} />
+    <Route path="/signin" element={<Signin/>} />
+    <Route path="/onboarding" element={<OnBoarding/>} />
+    {/* {userLoginState && <Route element={<Navigate replace={<OnBoarding/>} />}} */}
+   </Routes>
+   </BrowserRouter>
   )
 }
 
