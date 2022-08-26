@@ -5,7 +5,8 @@ import Button from './Button';
 
 const Wrapper = styled.div`
   width:100%;
-  margin-top:30px;
+  position:absolute;
+  bottom:30px;
 `
 
 const Message = styled.p`
