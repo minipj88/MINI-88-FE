@@ -19,11 +19,12 @@ const ButtonWrapper = styled.div`
 `
 const AuthButtons = () => {
   const navigate = useNavigate();
+
   const goToSigninPageHandler = () => {
-    navigate('/signup')
+    navigate('/signin')
   }
   const goToSignupPageHandler = () => {
-    navigate('/signin')
+    navigate('/signup')
   }
   return (
     <ButtonWrapper>
