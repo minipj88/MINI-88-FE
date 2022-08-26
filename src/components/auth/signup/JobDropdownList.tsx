@@ -12,12 +12,14 @@ const Wrapper = styled.div`
 const DropdownHeader = styled.div`
   margin-bottom: 10px;
   font-weight:bold;
-  color: #0066F6;
-  background: #fff;
+  color:white;
   text-align: center;
   padding: 20px 0;
   border: 1px solid #e5e5e5;
-  background: #e1e1ff;
+  background: radial-gradient(50% 50% at 50% 50%, #93D8E4 0%, #7DCFDD 100%);
+  box-shadow: 0px 4px 4px rgba(0,0,0,0.25);
+  box-sizing:border-box;
+  border-radius: 5px;
 `
 
 const DropdownListContainer = styled.div`
@@ -91,7 +93,7 @@ const JobDropdownList = ({setFormValue,formValue}:JobDropdownListProps) => {
   return (
     <Wrapper>
       
-      <DropdownHeader onClick={toggleHandler}>{selectedOption || "직업을 선택하세요."}</DropdownHeader>
+      <DropdownHeader onClick={toggleHandler}>{selectedOption || "직업선택"}</DropdownHeader>
       {isOpen && <DropdownListContainer>
         <DropdownList>
         {jobDescriptionArray.map((item) => <ListItem key={item} value={item} onClick={() => selectOptionHandler(item)}>{item}</ListItem>)}
