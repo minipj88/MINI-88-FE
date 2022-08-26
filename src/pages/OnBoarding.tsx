@@ -1,11 +1,22 @@
-import React from 'react';
+import axios from 'axios';
+import { ChangeEvent, useEffect, useState } from 'react';
+import styled from 'styled-components';
+import Greeting from '../components/onboarding/Greeting';
+import GreetingCarousel from '../components/onboarding/GreetingCarousel';
 
-const OnBoarding = () => {
+
+
+function App() {
+  const [showCarousel,setShowCarousel] = useState(false)
+  const showUpGreetingCarouselHandler = () => {
+    setShowCarousel(true)
+  }
   return (
-    <div>
-      
-    </div>
+    <>
+    {!showCarousel && <Greeting onClick={showUpGreetingCarouselHandler} />}
+    {showCarousel && <GreetingCarousel />}
+    </>
   );
-};
+}
 
-export default OnBoarding;
+export default App;
