@@ -1,25 +1,25 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
-import AllProducts from './pages/AllProducts';
-import CreditScore from './pages/CreditScore';
-import Cart from './pages/Cart';
-import Profile from './pages/Profile';
-import Signup from './pages/Signup';
-import Signin from './pages/Signin';
-import OnBoarding from './pages/OnBoarding';
+import HomePage from './pages/HomePage';
+import AllProductsPage from './pages/AllProductsPage';
+import CreditScorePage from './pages/CreditScorePage';
+import CartPage from './pages/CartPage';
+import ProfilePage from './pages/ProfilePage';
+import SignupPage from './pages/SignupPage';
+import SigninPage from './pages/SigninPage';
+import OnBoardingPage from './pages/OnBoardingPage';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home/>} />
-        <Route path="/allproducts" element={<AllProducts/>} />
-        <Route path="/creditscore" element={<CreditScore/>} />
-        <Route path="/cart" element={<Cart/>} />
-        <Route path="/profile" element={<Profile/>} />
-        <Route path="/signup" element={<Signup/>} />
-        <Route path="/signin" element={<Signin/>} />
-        <Route path="/onboarding" element={<OnBoarding/>} />
+        <Route path="/" element={<HomePage/>} />
+        <Route path="/allproducts" element={<AllProductsPage/>} />
+        <Route path="/creditscore" element={<CreditScorePage/>} />
+        <Route path="/cart" element={<CartPage/>} />
+        <Route path="/profile" element={<ProfilePage/>} />
+        <Route path="/signup" element={<SignupPage/>} />
+        <Route path="/signin" element={<SigninPage/>} />
+        <Route path="/onboarding" element={<OnBoardingPage/>} />
       </Routes>
     </BrowserRouter>
   )
