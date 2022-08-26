@@ -73,7 +73,7 @@ const GreetingCarousel = () => {
 
       {currentPage !== 3 && <DotBox currentPage={currentPage}/>}
 
-      {currentPage !== 3 && <Button onClick={nextpageHandler} width="138px" text='Next' height='50px' color='white' bgColor='#0066f6'/>}
+      {currentPage !== 3 && <Button onClick={nextpageHandler} width="138px" text='Next' height='50px' color='white' bgColor='#0066f6' totalValid={true}/>}
       
       {currentPage === 3 && <AuthButtons />}
       

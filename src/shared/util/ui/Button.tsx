@@ -38,7 +38,7 @@ interface ButtonProps{
   bgColor:string
   buttonPosition?:string;
   buttonBorder?:string;
-  totalValid:boolean;
+  totalValid?:boolean;
 }
 
 const Button = ({width,height,color,onClick,text,bgColor,buttonPosition,buttonBorder,totalValid}:ButtonProps) => {
