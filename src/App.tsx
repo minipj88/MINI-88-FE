@@ -15,6 +15,7 @@ function App() {
   return (
    <BrowserRouter>
    <Routes>
+   
     <Route path="/" element={<Home/>} />
     <Route path="/allproducts" element={<AllProducts/>} />
     <Route path="/creditscore" element={<CreditScore/>} />
@@ -23,7 +24,7 @@ function App() {
     <Route path="/signup" element={<Signup/>} />
     <Route path="/signin" element={<Signin/>} />
     <Route path="/onboarding" element={<OnBoarding/>} />
-    {/* {userLoginState && <Route element={<Navigate replace={<OnBoarding/>} />}} */}
+    
    </Routes>
    </BrowserRouter>
   )
