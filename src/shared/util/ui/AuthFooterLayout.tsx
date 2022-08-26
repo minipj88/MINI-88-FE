@@ -7,6 +7,7 @@ const Wrapper = styled.div`
   width:100%;
   position:absolute;
   bottom:30px;
+  margin: 0 auto;
 `
 
 const Message = styled.p`
@@ -32,7 +33,7 @@ interface AuthFooterLayoutProps {
 const AuthFooterLayout = ({infoMessage,linkUrl,linkMessage,buttonText,totalValid}:AuthFooterLayoutProps) => {
   return (
     <Wrapper>
-      <Button width="362px" height="50px" color="white" bgColor='#0066F6' onClick={() => {}} buttonPosition="static" text={buttonText} totalValid={totalValid} />
+      <Button width="90%" height="50px" color="white" bgColor='#0066F6' onClick={() => {}} buttonPosition="static" text={buttonText} totalValid={totalValid} />
     <Message>{infoMessage}{' '}<CustomLink to={linkUrl}>{linkMessage}</CustomLink></Message>
     </Wrapper>
   );

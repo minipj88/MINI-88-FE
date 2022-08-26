@@ -2,9 +2,10 @@ import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-  margin-top:137px;
-  margin-left:16px;
-  margin-right:16px;
+  width:90%;
+  
+  margin: 87px auto 0;
+
 `
 
 const Title = styled.h2`
