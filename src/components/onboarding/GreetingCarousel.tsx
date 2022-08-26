@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Button from '../../shared/util/ui/Button';
+import AuthButtons from './AuthButtons';
+import DotBox from './DotBox';
 import Greeting from './Greeting';
 import GreetingAndRegister from './GreetingAndRegister';
 import GreetingInfo1 from './GreetingInfo1';
@@ -39,35 +41,7 @@ const SkipButton = styled.button`
   font-family: 'Noto Sans KR', sans-serif;
 `;
 
-const ButtonWrapper = styled.div`
-  width:100%;
-  height:fit-content;
-  position:absolute;
-  display:flex;
-  gap:20px;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  bottom:30px;
 
-`
-
-const DotBox = styled.div`
-  position:absolute;
-  display:flex;
-  gap:2px;
-  bottom:49px;
-  left: 10px; 
-  width:fit-content;
-  height:fit-content;
-`
-const Dot = styled.div`
-  width:  ${(props) => props['aria-current'] ==='page' ? "34px" : "12px"};
-  height: 12px;
-  background:  ${(props) => props['aria-current'] ==='page' ? "#0066f6" : "#c4c4c4"};
-  border-radius: 9999px;
-  transition: 250ms;
-`
 
 const GreetingCarousel = () => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -97,20 +71,11 @@ const GreetingCarousel = () => {
       </SlideBox>
 
 
-      {currentPage !== 3 &&
-      <DotBox>
-        <Dot aria-current={0 === currentPage ? 'page' : undefined} />
-        <Dot aria-current={1 === currentPage ? 'page' : undefined} />
-        <Dot aria-current={2 === currentPage ? 'page' : undefined} />
-      </DotBox>}
+      {currentPage !== 3 && <DotBox currentPage={currentPage}/>}
 
       {currentPage !== 3 && <Button onClick={nextpageHandler} width="138px" text='Next' height='50px' color='white' bgColor='#0066f6'/>}
       
-      {currentPage === 3 &&
-      <ButtonWrapper>
-      <Button bgColor='#0066F6' width="90%" height='50px' color="white" text="계정 생성" onClick={() => {}} buttonPosition="static" />
-      <Button bgColor='#fff' width="90%" height='50px' color="#001533" text="로그인" onClick={() => {}} buttonPosition="static" buttonBorder="1px solid #999999" />
-      </ButtonWrapper>}
+      {currentPage === 3 && <AuthButtons />}
       
     </SliceContainer>
   );
