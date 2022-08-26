@@ -25,13 +25,14 @@ interface AuthFooterLayoutProps {
   infoMessage: string;
   linkUrl: string;
   linkMessage: string;
-  buttonText: string; 
+  buttonText: string;
+  totalValid: boolean;
 }
 
-const AuthFooterLayout = ({infoMessage,linkUrl,linkMessage,buttonText}:AuthFooterLayoutProps) => {
+const AuthFooterLayout = ({infoMessage,linkUrl,linkMessage,buttonText,totalValid}:AuthFooterLayoutProps) => {
   return (
     <Wrapper>
-      <Button width="362px" height="50px" color="white" bgColor='#0066F6' onClick={() => {}} buttonPosition="static" text={buttonText} />
+      <Button width="362px" height="50px" color="white" bgColor='#0066F6' onClick={() => {}} buttonPosition="static" text={buttonText} totalValid={totalValid} />
     <Message>{infoMessage}{' '}<CustomLink to={linkUrl}>{linkMessage}</CustomLink></Message>
     </Wrapper>
   );

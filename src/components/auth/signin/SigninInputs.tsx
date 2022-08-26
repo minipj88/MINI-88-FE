@@ -1,11 +1,19 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
+import useValid from '../../../hooks/useValid';
 import Input from '../../../shared/util/ui/Input';
 
-const SigninInputs = () => {
+
+
+interface SigninInputsProps {
+  setTotalValid: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+const SigninInputs = ({setTotalValid}:SigninInputsProps) => {
   const [formValue,setFormValue] = useState({
     email:'',
     password:''
   })
+  const {validateEmail,validatePassword} = useValid()
   const changeHandler = (e:ChangeEvent<HTMLInputElement>) => {
     const {currentTarget:{value,name}} = e;
     setFormValue({
@@ -14,6 +22,9 @@ const SigninInputs = () => {
     })
     console.log(formValue);
   }
+  useEffect(() => {
+    setTotalValid(validateEmail(formValue.email) && validatePassword(formValue.password))
+  },[formValue])
   return (
     <>
       <Input name="email" text="이메일" type="email" placeholder='이메일을 입력해주세요.' onChange={changeHandler} value={formValue.email} />

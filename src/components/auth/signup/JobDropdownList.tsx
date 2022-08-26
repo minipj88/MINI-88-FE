@@ -1,6 +1,6 @@
 
 
-import React, { useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import styled from 'styled-components';
 
 
@@ -17,6 +17,7 @@ const DropdownHeader = styled.div`
   text-align: center;
   padding: 20px 0;
   border: 1px solid #e5e5e5;
+  background: #e1e1ff;
 `
 
 const DropdownListContainer = styled.div`
@@ -50,7 +51,26 @@ const ListItem = styled.li`
 
 const jobDescriptionArray = ['회사원','사업자','공무원','기타(프리랜서,아르바이트 등)','무직(주부 등)'];
 
-const SignupJobInput = () => {
+
+interface JobDropdownListProps {
+  setFormValue : React.Dispatch<React.SetStateAction<{
+    email: string;
+    password: string;
+    passwordConfirm: string;
+    nickname: string;
+    job: string;
+}>>
+  formValue: {
+    email: string;
+    password: string;
+    passwordConfirm: string;
+    nickname: string;
+    job: string;
+}
+}
+
+
+const JobDropdownList = ({setFormValue,formValue}:JobDropdownListProps) => {
   const [isOpen,setIsOpen] = useState(false);
   const [selectedOption,setSelectedOption] = useState<string | null>(null);
 
@@ -59,8 +79,15 @@ const SignupJobInput = () => {
   }
   const selectOptionHandler = (value:string) => {
     setSelectedOption(value);
+    setFormValue({
+      ...formValue,
+      job: value
+    })
     setIsOpen(false);
+   
   }
+  
+  
   return (
     <Wrapper>
       
@@ -75,4 +102,4 @@ const SignupJobInput = () => {
   );
 };
 
-export default SignupJobInput;
+export default JobDropdownList;
