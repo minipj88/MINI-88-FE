@@ -24,19 +24,6 @@ const CustomButton = styled.button<StyleProps>`
   border:${({buttonBorder}) => buttonBorder ? buttonBorder : 'none'};
   font-weight:bold;
 `
-const CustomLink = styled.button<StyleProps>`
-  position:${({buttonPosition}) => buttonPosition ? buttonPosition : 'absolute'};
-  right: 16px;
-  bottom:30px;
-  width: ${({width}) => width ? width : '138px' };
-  height:${({height}) => height ? height : '30px' };;
-  background: ${({bgColor}) => bgColor ? bgColor : '138px' };
-  border-radius: 5px;
-  font-size:14px;
-  color:${({color}) => color ? color : 'white' };
-  border:${({buttonBorder}) => buttonBorder ? buttonBorder : 'none'};
-  font-weight:bold;
-`
 
 
 interface ButtonProps{
