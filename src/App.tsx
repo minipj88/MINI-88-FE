@@ -7,6 +7,7 @@ import ProfilePage from './pages/ProfilePage';
 import SignupPage from './pages/SignupPage';
 import SigninPage from './pages/SigninPage';
 import OnBoardingPage from './pages/OnBoardingPage';
+import NotFoundPage from './pages/NotFoundPage';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/signup" element={<SignupPage/>} />
         <Route path="/signin" element={<SigninPage/>} />
         <Route path="/onboarding" element={<OnBoardingPage/>} />
+        <Route path="*" element={<NotFoundPage/>} />
       </Routes>
     </BrowserRouter>
   )
