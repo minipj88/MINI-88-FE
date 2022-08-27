@@ -7,10 +7,14 @@ import ProfilePage from './pages/ProfilePage';
 import SignupPage from './pages/SignupPage';
 import SigninPage from './pages/SigninPage';
 import OnBoardingPage from './pages/OnBoardingPage';
+import TopNavigation from './components/topnavigation/TopNavigation';
 
 function App() {
   return (
+    <>
+    
     <BrowserRouter>
+    <TopNavigation />
       <Routes>
         <Route path="/" element={<HomePage/>} />
         <Route path="/allproducts" element={<AllProductsPage/>} />
@@ -22,6 +26,7 @@ function App() {
         <Route path="/onboarding" element={<OnBoardingPage/>} />
       </Routes>
     </BrowserRouter>
+    </>
   )
 }
 

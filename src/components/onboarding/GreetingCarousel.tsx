@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Button from '../../shared/util/ui/Button';
 import AuthButtons from './AuthButtons';
@@ -45,17 +46,16 @@ const SkipButton = styled.button`
 
 const GreetingCarousel = () => {
   const [currentPage, setCurrentPage] = useState(0);
-  
   const nextpageHandler = () => {
     if(currentPage === 3) return;
     setCurrentPage(prev => prev+=1)
   }
   const carouselSkipHandler = () => {
-
+    setCurrentPage(3)
   }
   return (
     <SliceContainer>
-      <SkipButton onClick={carouselSkipHandler}>SKIP</SkipButton>
+      {currentPage !==3 && <SkipButton onClick={carouselSkipHandler}>SKIP</SkipButton>}
       
       <SlideBox aria-current={0 === currentPage ? 'page' : undefined}>
         <GreetingInfo1 />
