@@ -2,7 +2,7 @@ import React from 'react';
 import SigninForm from '../components/auth/signin/SigninForm';
 
 
-const Signin = () => {
+const SigninPage = () => {
   return (
     <>
      <SigninForm />
@@ -10,4 +10,4 @@ const Signin = () => {
   );
 };
 
-export default Signin;
+export default SigninPage;

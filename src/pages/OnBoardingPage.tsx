@@ -6,7 +6,7 @@ import GreetingCarousel from '../components/onboarding/GreetingCarousel';
 
 
 
-function App() {
+function OnBoardingPage() {
   const [showCarousel,setShowCarousel] = useState(false)
   const showUpGreetingCarouselHandler = () => {
     setShowCarousel(true)
@@ -19,4 +19,4 @@ function App() {
   );
 }
 
-export default App;
+export default OnBoardingPage;
