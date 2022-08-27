@@ -1,11 +1,13 @@
 import React from 'react';
+import BottomNavigation from '../components/bottomnavigation/BottomNavigation';
 
-const AllProducts = () => {
+const AllProductsPage = () => {
   return (
-    <div>
-      
-    </div>
+    <>
+      <p>금융 상품 Tab 입니다.</p>
+      <BottomNavigation/>
+    </>
   );
 };
 
-export default AllProducts;
+export default AllProductsPage;
