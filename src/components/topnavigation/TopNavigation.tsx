@@ -30,7 +30,6 @@ const TopNavigation = () => {
   return (
     <Wrapper>
       <IconBox>
-        <li><img src={`/search.png`} alt="" width={24} /></li>
         <li><Link to="/cart"><img src={`/bookmark.png`} alt="" width={18} height={24} /></Link></li>
         <li>
           <Link to="/profile"><Avatar></Avatar></Link>
