@@ -8,26 +8,40 @@ import SignupPage from './pages/SignupPage';
 import SigninPage from './pages/SigninPage';
 import OnBoardingPage from './pages/OnBoardingPage';
 import TopNavigation from './components/topnavigation/TopNavigation';
+import { useAppSelector } from './store/store';
+import { useEffect } from 'react';
 
 function App() {
-  return (
-    <>
-    
-    <BrowserRouter>
-    <TopNavigation />
+  const user = useAppSelector(state => state.auth)
+
+
+  if(!user.accessToken) {
+    return (
+      <BrowserRouter>
       <Routes>
-        <Route path="/" element={<HomePage/>} />
-        <Route path="/allproducts" element={<AllProductsPage/>} />
-        <Route path="/creditscore" element={<CreditScorePage/>} />
-        <Route path="/cart" element={<CartPage/>} />
-        <Route path="/profile" element={<ProfilePage/>} />
+        <Route path="/" element={<OnBoardingPage/>} />
         <Route path="/signup" element={<SignupPage/>} />
-        <Route path="/signin" element={<SigninPage/>} />
-        <Route path="/onboarding" element={<OnBoardingPage/>} />
+          <Route path="/signin" element={<SigninPage/>} />
       </Routes>
-    </BrowserRouter>
-    </>
-  )
+    </BrowserRouter>  
+    )
+  }else{
+    return (
+      <BrowserRouter>  
+        <Routes>
+          <Route path="/" element={<HomePage/>} />
+          <Route path="/allproducts" element={<AllProductsPage/>} />
+          <Route path="/creditscore" element={<CreditScorePage/>} />
+          <Route path="/cart" element={<CartPage/>} />
+          <Route path="/profile" element={<ProfilePage/>} />
+          <Route path="/signup" element={<SignupPage/>} />
+          <Route path="/signin" element={<SigninPage/>} />
+        </Routes>
+      </BrowserRouter>
+     )
+  }
+
+  
 }
 
 export default App

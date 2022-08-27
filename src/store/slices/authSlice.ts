@@ -48,7 +48,7 @@ const initialState = {
     job:'',
     age: '',
   },
-  accessToken: '',
+  accessToken: 'asdasdasdasd',
 }
 
 const authSlice = createSlice({
