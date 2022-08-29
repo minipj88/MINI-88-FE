@@ -2,40 +2,17 @@ import React, { ChangeEvent, useEffect, useReducer, useState } from 'react';
 import useValid from '../../../hooks/useValid';
 import Input from '../../../shared/util/ui/Input';
 import JobDropdownList from './JobDropdownList';
+import { FormValueTypes } from './SignupForm';
 
 
 interface SignupInputsProps {
   setTotalValid: React.Dispatch<React.SetStateAction<boolean>>
+  changeHandler: (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void
+  formValue: FormValueTypes
+  setFormValue: React.Dispatch<React.SetStateAction<FormValueTypes>>
 }
 
-const SignupInputs = ({setTotalValid}:SignupInputsProps) => {
-  const [formValue,setFormValue] = useState({
-    email: '',
-    password: '',
-    passwordConfirm: '',
-    nickname: '',
-    job:''
-  })
-  const {validateEmail,validatePassword,validateJob,validateNickname,validatePasswordConfirm} = useValid()
-  
-  const changeHandler = (e:ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const {currentTarget:{value,name}} = e;
-    setFormValue({
-      ...formValue,
-      [name]: value
-    })
-    console.log(formValue);
-  }
-  useEffect(() => {
-    setTotalValid(
-      validateEmail(formValue.email)
-      && validatePassword(formValue.password)
-      && validateJob(formValue.job)
-      && validateNickname(formValue.nickname)
-      && validatePasswordConfirm(formValue.passwordConfirm)
-      && formValue.password === formValue.passwordConfirm)
-
-  },[formValue])
+const SignupInputs = ({setTotalValid,changeHandler,formValue,setFormValue}:SignupInputsProps) => {
 
   return (
     <>

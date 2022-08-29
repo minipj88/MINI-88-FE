@@ -23,7 +23,7 @@ const Image = styled.img<StyleProps>`
 `
 const InfoTitle = styled.p<StyleProps>`
  font-weight:bold;
- font-size:28px;
+ font-size:24px;
  line-height:141%;
  color:#001533;
  width:fit-content;

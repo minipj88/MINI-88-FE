@@ -1,30 +1,19 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import useValid from '../../../hooks/useValid';
 import Input from '../../../shared/util/ui/Input';
+import { SigninFormValueTypes } from './SigninForm';
 
 
 
 interface SigninInputsProps {
   setTotalValid: React.Dispatch<React.SetStateAction<boolean>>
+  changeHandler:(e:ChangeEvent<HTMLInputElement>) => void
+  formValue: SigninFormValueTypes
+  setFormValue: React.Dispatch<React.SetStateAction<SigninFormValueTypes>>
 }
 
-const SigninInputs = ({setTotalValid}:SigninInputsProps) => {
-  const [formValue,setFormValue] = useState({
-    email:'',
-    password:''
-  })
-  const {validateEmail,validatePassword} = useValid()
-  const changeHandler = (e:ChangeEvent<HTMLInputElement>) => {
-    const {currentTarget:{value,name}} = e;
-    setFormValue({
-      ...formValue,
-      [name]: value
-    })
-    console.log(formValue);
-  }
-  useEffect(() => {
-    setTotalValid(validateEmail(formValue.email) && validatePassword(formValue.password))
-  },[formValue])
+const SigninInputs = ({setTotalValid,changeHandler,formValue,setFormValue}:SigninInputsProps) => {
+
   return (
     <>
       <Input name="email" text="이메일" type="email" placeholder='이메일을 입력해주세요.' onChange={changeHandler} value={formValue.email} />
