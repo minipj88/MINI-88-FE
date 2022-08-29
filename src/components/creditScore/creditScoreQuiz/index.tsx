@@ -242,7 +242,7 @@ function creditScoreQuiz() {
             </Suspense>}
       </InnerBox>
       <InnerBox aria-current={currentPage === 9 ? 'page' : undefined}>
-        <ResultScore finalScore={865} />
+        <ResultScore finalScore={resultCreditScore} />
         <Button onClick={() => setFinishQuiz(true)} width='100%' color='#fff' bgColor='#0066F6'>다음</Button>
       </InnerBox>
     </QuizPageContainer>
