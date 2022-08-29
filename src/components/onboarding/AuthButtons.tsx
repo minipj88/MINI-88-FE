@@ -19,16 +19,17 @@ const ButtonWrapper = styled.div`
 `
 const AuthButtons = () => {
   const navigate = useNavigate();
+
   const goToSigninPageHandler = () => {
-    navigate('/signup')
+    navigate('/signin')
   }
   const goToSignupPageHandler = () => {
-    navigate('/signin')
+    navigate('/signup')
   }
   return (
     <ButtonWrapper>
-      <Button bgColor='#0066F6' width="90%" height='50px' color="white" text="계정 생성" onClick={goToSignupPageHandler} buttonPosition="static" />
-      <Button bgColor='#fff' width="90%" height='50px' color="#001533" text="로그인" onClick={goToSigninPageHandler} buttonPosition="static" buttonBorder="1px solid #999999" />
+      <Button bgColor='#0066F6' width="90%" height='50px' color="white" text="계정 생성" onClick={goToSignupPageHandler} buttonPosition="static" totalValid={true} />
+      <Button bgColor='#fff' width="90%" height='50px' color="#001533" text="로그인" onClick={goToSigninPageHandler} buttonPosition="static" buttonBorder="1px solid #999999" totalValid={true} />
       </ButtonWrapper>
   );
 };

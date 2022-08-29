@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Button from '../../shared/util/ui/Button';
 import AuthButtons from './AuthButtons';
@@ -38,24 +39,23 @@ const SkipButton = styled.button`
   z-index: 1;
   background: #fff;
   border: none;
-  font-family: 'Noto Sans KR', sans-serif;
+  
 `;
 
 
 
 const GreetingCarousel = () => {
   const [currentPage, setCurrentPage] = useState(0);
-  
   const nextpageHandler = () => {
     if(currentPage === 3) return;
     setCurrentPage(prev => prev+=1)
   }
   const carouselSkipHandler = () => {
-
+    setCurrentPage(3)
   }
   return (
     <SliceContainer>
-      <SkipButton onClick={carouselSkipHandler}>SKIP</SkipButton>
+      {currentPage !==3 && <SkipButton onClick={carouselSkipHandler}>SKIP</SkipButton>}
       
       <SlideBox aria-current={0 === currentPage ? 'page' : undefined}>
         <GreetingInfo1 />
@@ -73,7 +73,7 @@ const GreetingCarousel = () => {
 
       {currentPage !== 3 && <DotBox currentPage={currentPage}/>}
 
-      {currentPage !== 3 && <Button onClick={nextpageHandler} width="138px" text='Next' height='50px' color='white' bgColor='#0066f6'/>}
+      {currentPage !== 3 && <Button onClick={nextpageHandler} width="138px" text='Next' height='50px' color='white' bgColor='#0066f6' totalValid={true}/>}
       
       {currentPage === 3 && <AuthButtons />}
       

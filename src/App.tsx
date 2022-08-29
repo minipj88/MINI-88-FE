@@ -1,33 +1,46 @@
-import {useState} from 'react'
-import {BrowserRouter,Routes,Route,Navigate} from 'react-router-dom'
-import AllProducts from './pages/AllProducts'
-import Cart from './pages/Cart'
-import CreditScore from './pages/CreditScore'
-import Home from './pages/Home'
-import OnBoarding from './pages/OnBoarding'
-import Profile from './pages/Profile'
-import Signin from './pages/Signin'
-import Signup from './pages/Signup'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import AllProductsPage from './pages/AllProductsPage';
+import CreditScorePage from './pages/CreditScorePage';
+import CartPage from './pages/CartPage';
+import ProfilePage from './pages/ProfilePage';
+import SignupPage from './pages/SignupPage';
+import SigninPage from './pages/SigninPage';
+import OnBoardingPage from './pages/OnBoardingPage';
+import NotFoundPage from './pages/NotFoundPage';
+import TopNavigation from './components/topnavigation/TopNavigation';
+import { useAppSelector } from './store/store';
+import { useEffect } from 'react';
 
 function App() {
+  const user = useAppSelector(state => state.auth)
 
-  const [userLoginState,setUserLoginState] = useState(false)
-  return (
-   <BrowserRouter>
-   <Routes>
-   
-    <Route path="/" element={<Home/>} />
-    <Route path="/allproducts" element={<AllProducts/>} />
-    <Route path="/creditscore" element={<CreditScore/>} />
-    <Route path="/cart" element={<Cart/>} />
-    <Route path="/profile" element={<Profile/>} />
-    <Route path="/signup" element={<Signup/>} />
-    <Route path="/signin" element={<Signin/>} />
-    <Route path="/onboarding" element={<OnBoarding/>} />
-    
-   </Routes>
-   </BrowserRouter>
-  )
+  if(!user.accessToken) {
+    return (
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<OnBoardingPage/>} />
+          <Route path="/signup" element={<SignupPage/>} />
+          <Route path="/signin" element={<SigninPage/>} />
+        </Routes>
+      </BrowserRouter>  
+    )
+  } else {
+    return (
+      <BrowserRouter>  
+        <Routes>
+          <Route path="/" element={<HomePage/>} />
+          <Route path="/allproducts" element={<AllProductsPage/>} />
+          <Route path="/creditscore" element={<CreditScorePage/>} />
+          <Route path="/cart" element={<CartPage/>} />
+          <Route path="/profile" element={<ProfilePage/>} />
+          <Route path="/signup" element={<SignupPage/>} />
+          <Route path="/signin" element={<SigninPage/>} />
+          <Route path="*" element={<NotFoundPage/>} />
+        </Routes>
+      </BrowserRouter>
+    )
+  }
 }
 
 export default App
