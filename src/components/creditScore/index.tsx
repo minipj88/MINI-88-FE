@@ -6,7 +6,7 @@ import styled from 'styled-components'
 const QuizPageContainer = styled.div`
   height: 676px;
   position: relative;
-  margin: 59px 16px 23px 16px;
+  margin: 82px 16px 23px 16px;
 `
 
 

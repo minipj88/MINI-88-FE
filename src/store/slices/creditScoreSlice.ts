@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 
 // createApi 작성 
-export const api이름 = createApi({
-  reducerPath: '리듀서이름',
+export const userCreditApi = createApi({
+  reducerPath: 'userCreditApi',
   baseQuery: fetchBaseQuery({
     baseUrl: import.meta.env.REACT_APP_API_URL,
   }),
@@ -13,17 +13,16 @@ export const api이름 = createApi({
     // 신용등급넣어주기: builder.mutation({
     //   query: () => '',
     // }),
-    // 사용자신용등급불러오기: builder.query({
-    //   query: () => '',
-    // }),
+    getUserInfo: builder.query({
+      query: () => '',
+    }),
   }),
 });
- 
 
-
-// export const {
-//   use요청이름Query
-// } = postApi;
+// createAPi export 하기
+export const {
+  useGetUserInfoQuery
+} = userCreditApi;
 
 
 
@@ -80,7 +79,7 @@ export const creditScoreSlice = createSlice({
 })
 
 
-// createAPi export 하기
+
 
 
 export const { incQuizScore, creditScoreCalc } = creditScoreSlice.actions

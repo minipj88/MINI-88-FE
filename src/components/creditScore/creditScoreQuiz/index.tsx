@@ -1,7 +1,7 @@
 import { lazy, Suspense, useState } from 'react'
 import { Link } from 'react-router-dom'
-import {useAppSelector} from '../../../store/store'
-import { incQuizScore, creditScoreCalc, useCreditScoreCalc } from '../../../store/slices/creditScoreSlice'
+import {useAppSelector, useAppDispatch} from '../../../store/store'
+import { incQuizScore, creditScoreCalc } from '../../../store/slices/creditScoreSlice'
 import styled from 'styled-components'
 import Quiz1 from './QuizText/Quiz1'
 import Quiz2 from './QuizText/Quiz2'
@@ -31,6 +31,7 @@ const QuizPageContainer = styled.div`
   width:100%;
   height: 676px;
   position: absolute;
+  top: 0;
 `
 const InnerBox = styled.div`
   height: inherit;
@@ -47,7 +48,7 @@ const Button = styled.button<ButtonProps>`
   width: ${({width}) => width};
   height: 50px;
   position: absolute;
-  bottom: 0;
+  bottom: 23px;
   left: ${({left}) => left};
   right: ${({right}) => right};
   font-size: 15px;
@@ -76,12 +77,11 @@ const QuizEnd = styled(Link)`
 
 function creditScoreQuiz() {
   const { resultCreditScore } = useAppSelector(state => state.creditScore.creditScoreData)
-  const { dispatch } = useCreditScoreCalc()
+  const dispatch = useAppDispatch()
 
   const [currentPage, setCurrentPage] = useState<number>(1)
   const [quizView, setQuizView] = useState<boolean>(true)
 
-  const [score, setScore] = useState<number>(0)
   function correctAnswerHandler() {
     dispatch(incQuizScore())
     setQuizView(false)
@@ -97,39 +97,6 @@ function creditScoreQuiz() {
     }
   }
 
-  const [finalScore, setFinalScore] = useState<number>(0)
-  function scoreCalcHandler() {
-    switch(score) {
-      case 8: 
-        setFinalScore(Math.floor(Math.random() * 78) + 942)
-        break
-      case 7: 
-        setFinalScore(Math.floor(Math.random() * 50) + 891)
-        break
-      case 6:
-        setFinalScore(Math.floor(Math.random() * 58) + 832)
-        break
-      case 5: 
-        setFinalScore(Math.floor(Math.random() * 63) + 768)
-        break
-      case 4: 
-        setFinalScore(Math.floor(Math.random() * 69) + 698)
-        break
-      case 3: 
-        setFinalScore(Math.floor(Math.random() * 67) + 630)
-        break
-      case 2:
-        setFinalScore(Math.floor(Math.random() * 99) + 530)
-        break
-      case 1:
-        setFinalScore(Math.floor(Math.random() * 75) + 454)
-        break
-      case 0: 
-        setFinalScore(Math.floor(Math.random() * 118) + 335)
-        break
-      default: setFinalScore(Math.floor(Math.random() * 335))
-    }
-  }
   
   const LazyQuiz1 = lazy(() => import('./AnswerText/Answer1'))
   const LazyQuiz2 = lazy(() => import('./AnswerText/Answer2'))

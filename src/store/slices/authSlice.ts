@@ -52,7 +52,7 @@ const initialState = {
     job: '',
     age: '',
   },
-  accessToken: '',
+  accessToken: 'sadfasdf',
 }
 
 const authSlice = createSlice({
