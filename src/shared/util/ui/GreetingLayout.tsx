@@ -12,6 +12,7 @@ const Wrapper = styled.div`
   left:16px;
   right:16px;
   top:124px;
+  
 `
 
 const Image = styled.img<StyleProps>`
@@ -28,13 +29,13 @@ const InfoTitle = styled.p<StyleProps>`
  width:fit-content;
  height:42px;
  margin: ${({textMargin}) => textMargin ? textMargin : 0};
- font-family: 'Noto Sans KR', sans-serif;
+ 
 `
 const InfoMessage = styled.p<StyleProps>`
   font-size:16px;
   line-height:150%;
   font-weight: 300;
-  font-family: 'Noto Sans KR', sans-serif;
+  
   width: fit-content;
   margin: ${({textMargin2}) => textMargin2 ? textMargin2 : 0};
   word-break:keep-all;

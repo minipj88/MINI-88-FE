@@ -26,6 +26,7 @@ const CustomButton = styled.button<StyleProps>`
   :disabled{
     background-color: #ccc;
   }
+  
 `
 
 

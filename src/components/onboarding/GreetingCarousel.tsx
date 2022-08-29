@@ -39,7 +39,7 @@ const SkipButton = styled.button`
   z-index: 1;
   background: #fff;
   border: none;
-  font-family: 'Noto Sans KR', sans-serif;
+  
 `;
 
 

@@ -18,7 +18,7 @@ const Wrapper = styled.div`
   line-height: 20px;
   margin: 12px 0;
   label{
-    font-family:'Noto Sans KR',sans-serif;
+    
   }
   input{
     box-sizing:border-box;
