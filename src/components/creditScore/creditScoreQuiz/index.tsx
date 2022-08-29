@@ -1,5 +1,7 @@
 import { lazy, Suspense, useState } from 'react'
 import { Link } from 'react-router-dom'
+import {useAppSelector} from '../../../store/store'
+import { incQuizScore, creditScoreCalc, useCreditScoreCalc } from '../../../store/slices/creditScoreSlice'
 import styled from 'styled-components'
 import Quiz1 from './QuizText/Quiz1'
 import Quiz2 from './QuizText/Quiz2'
@@ -73,11 +75,15 @@ const QuizEnd = styled(Link)`
 
 
 function creditScoreQuiz() {
+  const { resultCreditScore } = useAppSelector(state => state.creditScore.creditScoreData)
+  const { dispatch } = useCreditScoreCalc()
+
   const [currentPage, setCurrentPage] = useState<number>(1)
   const [quizView, setQuizView] = useState<boolean>(true)
 
   const [score, setScore] = useState<number>(0)
   function correctAnswerHandler() {
+    dispatch(incQuizScore())
     setQuizView(false)
   }
   function wrongAnswerHandler() {
@@ -87,7 +93,7 @@ function creditScoreQuiz() {
     setCurrentPage(() => currentPage + 1)
     setQuizView(true)
     if(currentPage === 8) {
-      //api 통신
+      dispatch(creditScoreCalc())
     }
   }
 
