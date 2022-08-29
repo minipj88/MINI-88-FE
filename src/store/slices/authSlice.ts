@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-import {createApi} from '@reduxjs/toolkit/query/react'
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 
 interface ReturnSignupType {
@@ -9,53 +9,57 @@ interface ReturnSignupType {
   createTime: Date;
   updateTime: Date;
   nickname: string;
-  job:string;
-  age:string;
+  job: string;
+  age: string;
 }
 interface ActionSignupType {
-  email:string;
-  nickname:string;
-  job:string;
-  age:string; 
+  email: string;
+  nickname: string;
+  job: string;
+  age: number;
+  password: string;
 }
-export const authApi = createApi({
-  reducerPath:'auth/authApi',
-  tagTypes:['Auth'],
-  baseQuery: import.meta.env.VITE_BASE_URL,
-  endpoints: (builder) => ({
-    signup: builder.mutation<ReturnSignupType,ActionSignupType>({
-      query: (data) => ({
-        url: '/api/register',
-        method:'POST',
-        body:data
-      })
+
+  export const authApi = createApi({
+    reducerPath: 'auth/authApi',
+    tagTypes: ['Auth'],
+    baseQuery: fetchBaseQuery({
+      baseUrl: import.meta.env.VITE_BASE_URL,
     }),
-    signin: builder.mutation<ReturnSignupType,Partial<ActionSignupType>>({
-      query: (data) => ({
-        url: '/api/login',
-        method:'POST',
-        body:data
+    endpoints: (builder) => ({
+      signup: builder.mutation<ReturnSignupType, ActionSignupType>({
+        query: (data) => ({
+          url: '/regist',
+          method: 'POST',
+          body: data
+        })
+      }),
+      signin: builder.mutation<ReturnSignupType, Partial<ActionSignupType>>({
+        query: (data) => ({
+          url: '/login',
+          method: 'POST',
+          body: data
+        })
       })
     })
   })
-})
 
 
 const initialState = {
-  userData : {
+  userData: {
     email: '',
     username: '',
-    job:'',
+    job: '',
     age: '',
   },
   accessToken: '',
 }
 
 const authSlice = createSlice({
-  name:'auth',
+  name: 'auth',
   initialState,
-  reducers:{
-    getToken(state,action){
+  reducers: {
+    getToken(state, action) {
       state.accessToken = action.payload.data.accessToken
     },
     logout(state) {
@@ -73,7 +77,7 @@ const authSlice = createSlice({
 })
 
 
-export const {useSigninMutation,useSignupMutation} = authApi
+export const { useSigninMutation, useSignupMutation } = authApi
 export const authReducer = authSlice.reducer;
 
 

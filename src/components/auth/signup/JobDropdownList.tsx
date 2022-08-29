@@ -2,6 +2,7 @@
 
 import React, { ChangeEvent, useState } from 'react';
 import styled from 'styled-components';
+import { FormValueTypes } from './SignupForm';
 
 
 const Wrapper = styled.div`
@@ -55,20 +56,8 @@ const jobDescriptionArray = ['회사원','사업자','공무원','기타(프리�
 
 
 interface JobDropdownListProps {
-  setFormValue : React.Dispatch<React.SetStateAction<{
-    email: string;
-    password: string;
-    passwordConfirm: string;
-    nickname: string;
-    job: string;
-}>>
-  formValue: {
-    email: string;
-    password: string;
-    passwordConfirm: string;
-    nickname: string;
-    job: string;
-}
+  setFormValue : React.Dispatch<React.SetStateAction<FormValueTypes>>
+  formValue: FormValueTypes
 }
 
 
