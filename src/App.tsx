@@ -7,6 +7,7 @@ import ProfilePage from './pages/ProfilePage';
 import SignupPage from './pages/SignupPage';
 import SigninPage from './pages/SigninPage';
 import OnBoardingPage from './pages/OnBoardingPage';
+import NotFoundPage from './pages/NotFoundPage';
 import TopNavigation from './components/topnavigation/TopNavigation';
 import { useAppSelector } from './store/store';
 import { useEffect } from 'react';
@@ -14,18 +15,17 @@ import { useEffect } from 'react';
 function App() {
   const user = useAppSelector(state => state.auth)
 
-
   if(!user.accessToken) {
     return (
       <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<OnBoardingPage/>} />
-        <Route path="/signup" element={<SignupPage/>} />
+        <Routes>
+          <Route path="/" element={<OnBoardingPage/>} />
+          <Route path="/signup" element={<SignupPage/>} />
           <Route path="/signin" element={<SigninPage/>} />
-      </Routes>
-    </BrowserRouter>  
+        </Routes>
+      </BrowserRouter>  
     )
-  }else{
+  } else {
     return (
       <BrowserRouter>  
         <Routes>
@@ -36,12 +36,11 @@ function App() {
           <Route path="/profile" element={<ProfilePage/>} />
           <Route path="/signup" element={<SignupPage/>} />
           <Route path="/signin" element={<SigninPage/>} />
+          <Route path="*" element={<NotFoundPage/>} />
         </Routes>
       </BrowserRouter>
-     )
+    )
   }
-
-  
 }
 
 export default App
