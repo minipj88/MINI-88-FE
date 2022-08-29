@@ -20,6 +20,7 @@ const SigninForm = () => {
   const [login,{data,isLoading,error,isError}] = useSigninMutation()
   const changeHandler = (e:ChangeEvent<HTMLInputElement>) => {
     const {currentTarget:{value,name}} = e;
+    
     setFormValue({
       ...formValue,
       [name]: value
@@ -32,7 +33,7 @@ const SigninForm = () => {
   useEffect(() => {
     setTotalValid(validateEmail(formValue.email) && validatePassword(formValue.password))
   },[formValue])
-  
+
   return (
     <AuthLayout title="로그인" description='Eight에 로그인합니다.'>
       <SigninInputs setTotalValid={setTotalValid} changeHandler={changeHandler} formValue={formValue} setFormValue={setFormValue} />
