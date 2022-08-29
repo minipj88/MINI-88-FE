@@ -32,6 +32,7 @@ const QuizPageContainer = styled.div`
   height: 676px;
   position: absolute;
   top: 0;
+  text-align: left;
 `
 const InnerBox = styled.div`
   height: inherit;
