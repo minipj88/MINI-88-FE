@@ -4,20 +4,22 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 interface ReturnSignupType {
   data: {
-    accessToken: string
+    
+    createTime: Date;
+    updateTime: Date;
+    username: string;
+    job: string;
+    age: string;
   }
-  createTime: Date;
-  updateTime: Date;
-  nickname: string;
-  job: string;
-  age: string;
+  
 }
 interface ActionSignupType {
-  email: string;
-  nickname: string;
-  job: string;
-  age: number;
-  password: string;
+  email: string
+  nickname: string
+  job: string
+  age: number
+  password: string
+  profilePhoto: ''
 }
 
   export const authApi = createApi({
@@ -29,14 +31,21 @@ interface ActionSignupType {
     endpoints: (builder) => ({
       signup: builder.mutation<ReturnSignupType, ActionSignupType>({
         query: (data) => ({
-          url: '/regist',
+          url: 'register',
           method: 'POST',
           body: data
         })
       }),
       signin: builder.mutation<ReturnSignupType, Partial<ActionSignupType>>({
         query: (data) => ({
-          url: '/login',
+          url: 'login',
+          method: 'POST',
+          body: data
+        })
+      }),
+      getMember: builder.query<ReturnSignupType, Partial<ActionSignupType>>({
+        query: (data) => ({
+          url: 'login',
           method: 'POST',
           body: data
         })
@@ -52,7 +61,6 @@ const initialState = {
     job: '',
     age: '',
   },
-  accessToken: '',
 }
 
 const authSlice = createSlice({
@@ -60,7 +68,7 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     getToken(state, action) {
-      state.accessToken = action.payload.data.accessToken
+      state.userData = action.payload.data
     },
     logout(state) {
       localStorage.removeItem('user');
@@ -70,7 +78,6 @@ const authSlice = createSlice({
         job: '',
         age: '',
       }
-      state.accessToken = ''
       window.location.pathname = '/login';
     }
   }

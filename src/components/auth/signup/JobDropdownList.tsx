@@ -4,13 +4,16 @@ import React, { ChangeEvent, useState } from 'react';
 import styled from 'styled-components';
 import { FormValueTypes } from './SignupForm';
 
+interface StyleProps {
+  size: string;
+}
 
 const Wrapper = styled.div`
   width:100%;
   height: 50px;
   margin: 10px 0;
 `
-const DropdownHeader = styled.div`
+const DropdownHeader = styled.div<StyleProps>`
   margin-bottom: 10px;
   font-weight:bold;
   color:white;
@@ -21,6 +24,7 @@ const DropdownHeader = styled.div`
   box-shadow: 0px 4px 4px rgba(0,0,0,0.25);
   box-sizing:border-box;
   border-radius: 5px;
+  width: ${({size}) => size ? size : ''};
 `
 
 const DropdownListContainer = styled.div`
@@ -58,10 +62,11 @@ const jobDescriptionArray = ['회사원','사업자','공무원','기타(프리�
 interface JobDropdownListProps {
   setFormValue : React.Dispatch<React.SetStateAction<FormValueTypes>>
   formValue: FormValueTypes
+  size?:string;
 }
 
 
-const JobDropdownList = ({setFormValue,formValue}:JobDropdownListProps) => {
+const JobDropdownList = ({setFormValue,formValue,size}:JobDropdownListProps) => {
   const [isOpen,setIsOpen] = useState(false);
   const [selectedOption,setSelectedOption] = useState<string | null>(null);
 
@@ -82,7 +87,7 @@ const JobDropdownList = ({setFormValue,formValue}:JobDropdownListProps) => {
   return (
     <Wrapper>
       
-      <DropdownHeader onClick={toggleHandler}>{selectedOption || "직업선택"}</DropdownHeader>
+      <DropdownHeader size={size || ''} onClick={toggleHandler}>{selectedOption || "직업선택"}</DropdownHeader>
       {isOpen && <DropdownListContainer>
         <DropdownList>
         {jobDescriptionArray.map((item) => <ListItem key={item} value={item} onClick={() => selectOptionHandler(item)}>{item}</ListItem>)}
