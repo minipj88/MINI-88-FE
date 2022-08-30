@@ -40,7 +40,7 @@ const useValid = () => {
     }
   },[])
   const validateAge = useCallback((age:number) => {
-    if(age){
+    if(age > 0 && age < 100){
       return true;
     }else {
       return false;
