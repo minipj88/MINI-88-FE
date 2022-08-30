@@ -16,6 +16,12 @@ export const userCreditApi = createApi({
     getUserInfo: builder.query({
       query: () => '',
     }),
+    getProducts: builder.query({
+      query: () => '',
+    }),
+    postFilter: builder.mutation({
+      query: () => '',
+    })
   }),
 });
 

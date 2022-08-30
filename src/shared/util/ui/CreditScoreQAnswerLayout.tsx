@@ -24,7 +24,7 @@ const Description = styled.span<DescriptionProps>`
 `
 const QuestionAnswer = styled.div`
   width: 100%;
-  heught: 100%
+  height: 100%
 `
 const FaceBox = styled.div<FaceBoxProps>`
   display: flex;

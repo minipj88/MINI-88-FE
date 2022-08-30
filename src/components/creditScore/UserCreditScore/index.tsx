@@ -22,8 +22,7 @@ interface CreditRateSubName {
   to: string
 }
 
-const TestBg = styled.div`
-  
+const Container = styled.div`
   height: 333px;
 `
 const Text = styled.span<TextProps>`
@@ -66,6 +65,7 @@ const Button = styled.button`
   color: #fff;
   border: none;
   border-radius: 5px;
+  box-shadow: 0 3px 6px #a0a0a0;
 `
 const CreditTitle = styled.span`
   display: block;
@@ -122,9 +122,9 @@ function UserCreditScore() {
   }, [resultCreditScore])
 
   
-if(!data) {
+if(data) {
   return (
-    <TestBg>
+    <Container>
       <div>
         <Text paddingTop='38px' fontSize='25px' fontWeight='700' color='#0066F6'>신용점수 조회하기</Text>
         <TitleSub fontWeight='400' color='#333'>{}김명성님의 신용평가 결과</TitleSub>
@@ -144,11 +144,11 @@ if(!data) {
         <Text fontSize='24px' fontWeight='700' color='#0066F6' margin='0 14px' decoration='underline'>{rateName}</Text>
         <CreditRateSubName from='#fff' to='#b7b7b7'>{restRate[1]}</CreditRateSubName>
       </CreditRateBox>
-    </TestBg>
+    </Container>
   )
 } else {
   return (
-    <TestBg>
+    <Container>
       <div>
         <Text paddingTop='38px' fontSize='25px' fontWeight='700' color='#0066F6'>신용점수 조회하기</Text>
         <TitleSub fontWeight='300' color='#001533'>{}김명성님의 신용 점수</TitleSub>
@@ -157,7 +157,7 @@ if(!data) {
         <Text fontSize='50px' fontWeight='700'><Text color='#0066F6'>???</Text>점 / <Text color='#0066F6'>1000</Text>점</Text>
         {quizView ? <CreditScoreQuiz /> : <Button onClick={() => setQuizView(true)}>1분 만에 조회하기</Button>}
       </UserCreditRate>
-    </TestBg>
+    </Container>
   )
 }
 }
