@@ -45,7 +45,10 @@ const SignupForm = () => {
       && validatePassword(formValue.password)
       && validateJob(formValue.job)
       && validateUsername(formValue.username)
-      && validatePasswordConfirm(formValue.passwordConfirm) && formValue.password === formValue.passwordConfirm && validateAge(formValue.age))
+      && validatePasswordConfirm(formValue.passwordConfirm)
+      && formValue.password === formValue.passwordConfirm
+      && validateAge(formValue.age)
+      )
   },[formValue])
 
   const registHandler = () => {
