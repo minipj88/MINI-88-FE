@@ -39,12 +39,20 @@ const useValid = () => {
       return false
     }
   },[])
+  const validateAge = useCallback((age:number) => {
+    if(age){
+      return true;
+    }else {
+      return false;
+    }
+  },[])
   return {
     validateEmail,
     validateUsername,
     validatePassword,
     validatePasswordConfirm,
-    validateJob
+    validateJob,
+    validateAge
   }
 };
 

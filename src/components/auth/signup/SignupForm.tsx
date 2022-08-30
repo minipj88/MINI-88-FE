@@ -14,6 +14,7 @@ export interface FormValueTypes {
   username: string;
   job: string;
   age: number;
+  profilePhoto: string;
 }
 
 const SignupForm = () => {
@@ -25,9 +26,10 @@ const SignupForm = () => {
     passwordConfirm: '',
     username: '',
     job:'',
-    age:0
+    age:0,
+    profilePhoto: ''
   })
-  const {validateEmail,validatePassword,validateJob,validateUsername,validatePasswordConfirm} = useValid()
+  const {validateEmail,validatePassword,validateJob,validateUsername,validatePasswordConfirm,validateAge} = useValid()
   
   const changeHandler = (e:ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const {currentTarget:{value,name}} = e;
@@ -43,9 +45,7 @@ const SignupForm = () => {
       && validatePassword(formValue.password)
       && validateJob(formValue.job)
       && validateUsername(formValue.username)
-      && validatePasswordConfirm(formValue.passwordConfirm)
-      && formValue.password === formValue.passwordConfirm)
-
+      && validatePasswordConfirm(formValue.passwordConfirm) && formValue.password === formValue.passwordConfirm && validateAge(formValue.age))
   },[formValue])
 
   const registHandler = () => {
@@ -56,7 +56,7 @@ const SignupForm = () => {
       job: formValue.job,
       age: formValue.age,
       password: formValue.password,
-      profilePhoto:''
+      profilePhoto:formValue.profilePhoto
     })
   }
   

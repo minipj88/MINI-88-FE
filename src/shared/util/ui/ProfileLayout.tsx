@@ -75,10 +75,12 @@ const InfomationBox = styled.div`
   }
   input{
     padding: 2px;
-    margin: 0 auto;
-    width: 300px;
+    margin-right: 14px;
+    width: 100%;
     height: 40px;
     font-size: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
   }
 `
 interface ProfileLayoutProps {
@@ -98,7 +100,8 @@ const ProfileLayout = ({selectedImage,children,changeModeHandler,onClick,imageIn
     passwordConfirm: '',
     age:0,
     username: user.username,
-    job: user.job
+    job: user.job,
+    profilePhoto: ''
   })
   
   const inputChangeHandler = (e:ChangeEvent<HTMLInputElement>) => {
@@ -114,7 +117,7 @@ const ProfileLayout = ({selectedImage,children,changeModeHandler,onClick,imageIn
       <Header>
       <Link to="/"><img src={'/close.png'} width={10} height={10} /></Link>
     <p>김명성님의 정보</p>
-    <p onClick={changeModeHandler}>수정</p>
+    <p onClick={changeModeHandler}>{type === 'edit' ? "뒤로" : "수정"}</p>
     </Header>
     <input ref={imageInputRef} type="file" hidden onChange={imageChangeHandler} />
     <ImageBox >
@@ -126,9 +129,10 @@ const ProfileLayout = ({selectedImage,children,changeModeHandler,onClick,imageIn
     </ImageChangeButtonBox>
     </ImageBox>
     <div>
-      <InfomationBox><span>이름</span>{type === 'basic' ? <span>김명성</span> : <input name="username" type="text" value={formValue.username} onChange={inputChangeHandler} />}</InfomationBox>
-      <InfomationBox><span style={{minWidth:'50px'}}>직업</span>{type === 'basic' ? <span>무직</span> : <JobDropdownList formValue={formValue} setFormValue={setFormValue} size='310px' />}</InfomationBox>
-      <InfomationBox><span >이메일</span><span>forwarm5891@gmail.com</span></InfomationBox>
+      <InfomationBox><span style={{minWidth:'60px'}}>닉네임</span>{type === 'basic' ? <span>김명성</span> : <input name="username" type="text" value={formValue.username} onChange={inputChangeHandler} />}</InfomationBox>
+      <InfomationBox><span style={{minWidth:'60px'}}>직업</span>{type === 'basic' ? <span>무직</span> : <JobDropdownList formValue={formValue} setFormValue={setFormValue} size='300px' />}</InfomationBox>
+      <InfomationBox><span style={{minWidth:'60px'}}>나이</span>{type === 'basic' ? <span>33</span> : <input name="age" type="number" min={20} max={100} value={formValue.age} onChange={inputChangeHandler} />}</InfomationBox>
+      <InfomationBox><span style={{minWidth:'60px'}}>이메일</span><span>forwarm5891@gmail.com</span></InfomationBox>
     </div>
     {children}
     {type ==="edit"

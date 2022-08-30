@@ -5,7 +5,7 @@ interface InputProps {
   type: string;
   text: string;
   placeholder: string;
-  value: string | undefined;
+  value: string | number | undefined;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void
   name:string;
 }
