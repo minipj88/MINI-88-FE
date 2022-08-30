@@ -4,14 +4,14 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 interface ReturnSignupType {
   data: {
-    
     createTime: Date;
     updateTime: Date;
     username: string;
     job: string;
     age: string;
+    profilePhoto: string;
+    email:string;
   }
-  
 }
 interface ActionSignupType {
   email: string
@@ -56,7 +56,7 @@ interface ActionSignupType {
 
 const initialState = {
   userData: {
-    email: '',
+    email: 'qweqwwqeeqweqwe',
     username: '',
     job: '',
     age: '',

@@ -112,13 +112,13 @@ const ProfileLayout = ({selectedImage,children,changeModeHandler,onClick,imageIn
   return (
     <Wrapper>
       <Header>
-      <Link to="/"><img src={selectedImage || '/close.png'} width={10} height={10} /></Link>
+      <Link to="/"><img src={'/close.png'} width={10} height={10} /></Link>
     <p>김명성님의 정보</p>
     <p onClick={changeModeHandler}>수정</p>
     </Header>
     <input ref={imageInputRef} type="file" hidden onChange={imageChangeHandler} />
     <ImageBox >
-    <img src={`/basicprofile.png`} width={96} height={96}/>
+    <img src={selectedImage || `/basicprofile.png`} width={96} height={96}/>
     <ImageChangeButtonBox>
     <ImageChangeButton onClick={onClick}>
       <img src="/add.png" width={14} height={13.4} />
