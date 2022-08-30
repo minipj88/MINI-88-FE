@@ -19,7 +19,7 @@ interface ActionSignupType {
   job: string
   age: number
   password: string
-  profilePhoto: ''
+  profilePhoto: string;
 }
 
   export const authApi = createApi({
