@@ -25,8 +25,8 @@ const useValid = () => {
       return false;
     }
   },[])
-  const validateNickname = useCallback((nickname:string) => {
-    if(nickname.length > 2 && nickname.length <= 16){
+  const validateUsername = useCallback((username:string) => {
+    if(username.length > 2 && username.length <= 16){
       return true;
     }else {
       return false;
@@ -39,12 +39,20 @@ const useValid = () => {
       return false
     }
   },[])
+  const validateAge = useCallback((age:number) => {
+    if(age > 0 && age < 100){
+      return true;
+    }else {
+      return false;
+    }
+  },[])
   return {
     validateEmail,
-    validateNickname,
+    validateUsername,
     validatePassword,
     validatePasswordConfirm,
-    validateJob
+    validateJob,
+    validateAge
   }
 };
 
