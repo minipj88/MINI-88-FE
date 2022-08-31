@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import CreditScoreQuiz from '../creditScoreQuiz'
 import styled from 'styled-components'
-import { useGetUserInfoQuery } from '../../../store/slices/creditScoreSlice';
+// import { useGetUserInfoQuery } from '../../../store/slices/creditScoreSlice';
 import { useAppSelector } from '../../../store/store';
 
 
@@ -122,7 +122,7 @@ function UserCreditScore() {
   }, [resultCreditScore])
 
   
-if(data) {
+if(!data) {
   return (
     <Container>
       <div>

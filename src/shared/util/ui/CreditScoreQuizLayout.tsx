@@ -8,9 +8,10 @@ interface GreetingLayoutProps {
 
 const Quiz = styled.div`
   padding-top: 60px;
+  margin-right: 10px;
   font-size: 24px;
-  font-weight: 600;
-  line-height: 28px;
+  font-weight: 700;
+  line-height: 32px;
   color: #333;
 `
 

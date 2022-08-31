@@ -87,20 +87,7 @@ function FilterBar() {
 
 
   function buttonHandler(id: string, filter: string) {
-    let newFilterButton = searchFilterButton.map(item => {
-      if(item.id === id && item.tap === false) {
-        return {
-          ...item,
-          tap: true
-        }
-      }
-      else {
-        return {
-          ...item,
-          tap: false
-        }
-      }
-    })
+    let newFilterButton = searchFilterButton.map(item => item.id === id ? {...item, tap: true} : {...item, tap: false})
     setSearchFilterButton(newFilterButton)
     // api 요청 item.filter
   }
