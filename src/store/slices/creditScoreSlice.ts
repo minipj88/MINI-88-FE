@@ -13,22 +13,22 @@ export const userCreditApi = createApi({
     // 신용등급넣어주기: builder.mutation({
     //   query: () => '',
     // }),
-    getUserInfo: builder.query({
-      query: () => '',
-    }),
-    getProducts: builder.query({
-      query: () => '',
-    }),
-    postFilter: builder.mutation({
-      query: () => '',
-    })
+    // getUserInfo: builder.query({
+    //   query: () => '',
+    // }),
+    // getProducts: builder.query({
+    //   query: () => '',
+    // }),
+    // postFilter: builder.mutation({
+    //   query: () => '',
+    // })
   }),
 });
 
 // createAPi export 하기
-export const {
-  useGetUserInfoQuery
-} = userCreditApi;
+// export const {
+//   useGetUserInfoQuery
+// } = userCreditApi;
 
 
 
