@@ -11,18 +11,5 @@
     "cbName": "KCB",
     "productType": "신용",
     "img": "https://www.busanbank.co.kr/resource/img/tit/h1_busanlogo_s.gif"
-  },
-  {
-    "id": 126,
-    "productName": "ONE신용대출",
-    "age": 20,
-    "rate": 5.2,
-    "job": "무직",
-    "financialCompanyName": "부산은행",
-    "productNumber": "1301",
-    "joinWay": "영업점,스마트폰",
-    "cbName": "KCB",
-    "productType": "신용",
-    "img": "https://www.busanbank.co.kr/resource/img/tit/h1_busanlogo_s.gif"
   }
 ]

@@ -1,5 +1,5 @@
 import React from 'react'
-import CreditScoreQuizLayout from '../../../../shared/util/ui/CreditScoreQuizLayout'
+import CreditScoreQuizLayout from '../../../../../shared/util/ui/CreditScoreQuizLayout'
 
 
 interface textProp {

@@ -1,5 +1,5 @@
 import React from 'react'
-import CreditScoreQAnswerLayout from '../../../../shared/util/ui/CreditScoreQAnswerLayout'
+import CreditScoreQAnswerLayout from '../../../../../shared/util/ui/CreditScoreQAnswerLayout'
 
 
 interface textProp {

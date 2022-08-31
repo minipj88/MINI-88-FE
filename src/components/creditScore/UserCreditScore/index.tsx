@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import CreditScoreQuiz from '../creditScoreQuiz'
+import CreditScoreQuiz from './creditScoreQuiz'
 import styled from 'styled-components'
 // import { useGetUserInfoQuery } from '../../../store/slices/creditScoreSlice';
 import { useAppSelector } from '../../../store/store';
@@ -44,7 +44,7 @@ const UserCreditRate = styled.div<UserCreditRateProps>`
   display: flex;
   flex-direction: ${({direction}) => direction};
   align-items: center;
-  padding: 55px 0 50px 0;
+  padding: 50px 0 45px 0;
   text-align: center;
   ::before {
     content: ${({content}) => content};
@@ -122,7 +122,7 @@ function UserCreditScore() {
   }, [resultCreditScore])
 
   
-if(!data) {
+if(data) {
   return (
     <Container>
       <div>
