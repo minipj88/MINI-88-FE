@@ -94,10 +94,9 @@ const CreditRateSubName = styled.span<CreditRateSubName>`
 
 
 function UserCreditScore() {
-  const { resultCreditScore } = useAppSelector(state => state.creditScore.creditScoreData)
+  const { resultCreditScore, creditRating } = useAppSelector(state => state.creditScore.creditScoreData)
   const [rateName, setRateName] = useState<string>('')
   const [restRate, setRestRate] = useState<string[]>([''])
-  // const { data: posts, isLoading, isError } = useGetUserInfoQuery()
   const [quizView, setQuizView] = useState<boolean>(false)
 
   // 사용자 데이터에 신용등급이 있는지 (테스트 스테이트)
@@ -122,7 +121,7 @@ function UserCreditScore() {
   }, [resultCreditScore])
 
   
-if(data) {
+if(!data) {
   return (
     <Container>
       <div>
@@ -136,7 +135,7 @@ if(data) {
         </CreditScoreBox>
         <CreditScoreBox>
           <CreditTitle>신용등급</CreditTitle>
-          <Text fontSize='50px' fontWeight='700'><Text color='#0066F6'>2</Text>등급</Text>
+          <Text fontSize='50px' fontWeight='700'><Text color='#0066F6'>{creditRating}</Text>등급</Text>
         </CreditScoreBox>
       </UserCreditRate>
       <CreditRateBox>

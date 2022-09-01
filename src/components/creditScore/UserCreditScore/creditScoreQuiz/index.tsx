@@ -24,7 +24,7 @@ interface ButtonProps{
 const QuizPageContainer = styled.div`
   background-color: #fff;
   width:100%;
-  height: 100%;
+  height: 80vh;
   position: absolute;
   top: 0;
   text-align: left;
