@@ -4,9 +4,11 @@ import styled from 'styled-components';
 import Button from './Button';
 
 const Wrapper = styled.div`
+  
+  
   width:100%;
   position:absolute;
-  bottom:30px;
+  bottom:0px;
   margin: 0 auto;
 `
 

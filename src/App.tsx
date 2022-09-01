@@ -15,7 +15,7 @@ import { useEffect } from 'react';
 function App() {
   const user = useAppSelector(state => state.auth)
 
-  if(!user.accessToken) {
+  if(!user.userData.email) {
     return (
       <BrowserRouter>
         <Routes>
