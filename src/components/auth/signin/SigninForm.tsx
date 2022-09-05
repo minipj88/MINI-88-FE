@@ -1,4 +1,5 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import useValid from '../../../hooks/useValid';
 import AuthLayout from '../../../shared/util/ui/AuthLayout';
 import { useSigninMutation } from '../../../store/slices/authSlice';
@@ -20,16 +21,25 @@ const SigninForm = () => {
   const [login,{data,isLoading,error,isError}] = useSigninMutation()
   const changeHandler = (e:ChangeEvent<HTMLInputElement>) => {
     const {currentTarget:{value,name}} = e;
-    
     setFormValue({
       ...formValue,
       [name]: value
     })
-    console.log(formValue);
   }
-  const signInHandler = () => {
-    login(formValue)
+  const navigate = useNavigate()
+
+  const signInHandler = async() => {
+    await login(formValue).then(() => {
+      alert('로그인이 완료되었습니다. 메인페이지로 이동합니다.');
+      navigate('/')
+      location.reload();
+    })
   }
+  useEffect(() => {
+    if(!data) return;
+      localStorage.setItem('user', JSON.stringify(data))
+  },[data])
+
   useEffect(() => {
     setTotalValid(validateEmail(formValue.email) && validatePassword(formValue.password))
   },[formValue])

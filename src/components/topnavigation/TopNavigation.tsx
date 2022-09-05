@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { useAppSelector } from '../../store/store';
 
 
 const Wrapper = styled.nav`
@@ -16,7 +17,11 @@ const Avatar = styled.div`
   width: 36px;
   height: 36px;
   border-radius: 24px;
-  border: 2px solid red;
+  img{
+    width:36px;
+    height:36px;
+    border-radius:36px;
+  }
 `
 const IconBox = styled.ul`
   display:flex;
@@ -27,12 +32,15 @@ const IconBox = styled.ul`
 `
 
 const TopNavigation = () => {
+  const userImage = useAppSelector(state => state.auth.userData.profilePhoto)
   return (
     <Wrapper>
       <IconBox>
         <li><Link to="/cart"><img src={`/bookmark.png`} alt="" width={18} height={24} /></Link></li>
         <li>
-          <Link to="/profile"><Avatar></Avatar></Link>
+          <Link to="/profile"><Avatar>
+            <img src={userImage || "https://t1.daumcdn.net/cfile/tistory/2513B53E55DB206927"} alt="" />
+            </Avatar></Link>
         </li>
       </IconBox>
     </Wrapper>

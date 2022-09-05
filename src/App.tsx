@@ -9,11 +9,28 @@ import SigninPage from './pages/SigninPage';
 import OnBoardingPage from './pages/OnBoardingPage';
 import NotFoundPage from './pages/NotFoundPage';
 import TopNavigation from './components/topnavigation/TopNavigation';
-import { useAppSelector } from './store/store';
+import { useAppDispatch, useAppSelector } from './store/store';
 import { useEffect } from 'react';
+import { getUser, UserInfo, useSigninMutation } from './store/slices/authSlice';
 
 function App() {
   const user = useAppSelector(state => state.auth)
+  const [_,data] = useSigninMutation();
+  const dispatch = useAppDispatch();
+
+
+  
+  
+  useEffect(() => {
+    if(!localStorage.getItem('user')) return;
+    const userInfo:UserInfo["userData"] = JSON.parse(localStorage.getItem('user')!)
+    dispatch(getUser(userInfo))
+    console.log(userInfo);
+    console.log(user);
+  } ,[data])
+
+  
+
 
   if(!user.userData.email) {
     return (

@@ -1,4 +1,5 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import useValid from '../../../hooks/useValid';
 import AuthLayout from '../../../shared/util/ui/AuthLayout';
 import Input from '../../../shared/util/ui/Input';
@@ -11,7 +12,7 @@ export interface FormValueTypes {
   email: string;
   password: string;
   passwordConfirm: string;
-  username: string;
+  name: string;
   job: string;
   age: number;
   profilePhoto: string;
@@ -24,27 +25,28 @@ const SignupForm = () => {
     email: '',
     password: '',
     passwordConfirm: '',
-    username: '',
+    name: '',
     job:'',
     age:0,
-    profilePhoto: ''
+    profilePhoto: 'https://t1.daumcdn.net/cfile/tistory/2513B53E55DB206927'
   })
   const {validateEmail,validatePassword,validateJob,validateUsername,validatePasswordConfirm,validateAge} = useValid()
-  
+  const navigate = useNavigate()
+
+
   const changeHandler = (e:ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const {currentTarget:{value,name}} = e;
     setFormValue({
       ...formValue,
       [name]: value
     })
-    console.log(formValue);
   }
   useEffect(() => {
     setTotalValid(
       validateEmail(formValue.email)
       && validatePassword(formValue.password)
       && validateJob(formValue.job)
-      && validateUsername(formValue.username)
+      && validateUsername(formValue.name)
       && validatePasswordConfirm(formValue.passwordConfirm)
       && formValue.password === formValue.passwordConfirm
       && validateAge(formValue.age)
@@ -55,12 +57,16 @@ const SignupForm = () => {
     
     createUser({
       email: formValue.email,
-      nickname: formValue.username,
+      name: formValue.name,
       job: formValue.job,
       age: formValue.age,
       password: formValue.password,
       profilePhoto:formValue.profilePhoto
+    }).then(() => {
+      alert('회원가입이 완료되었습니다. 로그인 페이지로 이동합니다.')
+      navigate('/signin')
     })
+    
   }
   
   

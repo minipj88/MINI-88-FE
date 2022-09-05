@@ -25,8 +25,8 @@ const useValid = () => {
       return false;
     }
   },[])
-  const validateUsername = useCallback((username:string) => {
-    if(username.length > 2 && username.length <= 16){
+  const validateUsername = useCallback((name:string) => {
+    if(name.length > 2 && name.length <= 16){
       return true;
     }else {
       return false;
