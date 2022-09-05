@@ -2,50 +2,27 @@ import { createSlice } from '@reduxjs/toolkit';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
 
 // createApi 작성
-interface ReturnProductType {
-  content: [
-    {
-      age: number;
-      cbName: string | null;
-      financialCompanyName: string;
-      id: number;
-      job: string;
-      joinWay: string;
-      maxAmount: string;
-      maxRate: number;
-      minRate: number;
-      productName: string;
-      productNumber: string;
-      productType: string;
-    },
-  ];
-  pageable: {
-    offset: number;
-    pageNumber: number;
-    pageSize: number;
-    paged: boolean;
-    sort: {
-      sorted: boolean;
-      unsorted: boolean;
-    };
-    unpaged: boolean;
-  };
+interface ContentObjectType {
+  age: number;
+  cbName: string | null;
+  financialCompanyName: string;
+  id: number;
+  job: string;
+  image: string;
+  joinWay: string;
+  maxAmount: string;
+  maxRate: number;
+  minRate: number;
+  productName: string;
+  productNumber: string;
+  productType: string;
+}
+export interface ReturnProductType {
+  content: ContentObjectType[];
   totalPages: number;
 }
 interface ActionProductPagingType {
-  data: {
-    pageable: {
-      offset: number;
-      pageNumber: number;
-      pageSize: number;
-      paged: boolean;
-      sort: {
-        sorted: boolean;
-        unsorted: boolean;
-      };
-      unpaged: boolean;
-    };
-  };
+  pageNumber: number;
 }
 
 export const productApi = createApi({
@@ -55,16 +32,14 @@ export const productApi = createApi({
   }),
   endpoints: (builder) => ({
     getProductList: builder.query<ReturnProductType, ActionProductPagingType>({
-      query: ({ data }) => ({
-        url: `main?offset=0&pageNumber=${data.pageable.pageNumber}&pageSize=5&paged=true&sort.sorted=true&sort.unsorted=false&unpaged=false`,
+      query: ({ pageNumber }) => ({
+        url: `main?page=${pageNumber}`,
       }),
     }),
   }),
 });
 
-const initialState = {
-  page: 0,
-};
+const initialState = {};
 
 const productSlice = createSlice({
   name: 'product',
