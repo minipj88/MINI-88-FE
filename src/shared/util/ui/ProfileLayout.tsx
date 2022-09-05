@@ -128,7 +128,7 @@ const ProfileLayout = ({setSelectedImage,selectedImage,children,changeModeHandle
     })
   }
 
-  console.log(formValue);
+
   return (
     <Wrapper>
       <Header>

@@ -19,7 +19,7 @@ const exampleSlice = createSlice({
   reducers: {
     helloWorld(state,action:PayloadAction<HelloWorldPayloadTypes>) {
       state.allString = state.hello  + action.payload.myname
-      console.log(`${state.hello}${action.payload.myname}`)
+
     }
   },
 })

@@ -25,8 +25,7 @@ function App() {
     if(!localStorage.getItem('user')) return;
     const userInfo:UserInfo["userData"] = JSON.parse(localStorage.getItem('user')!)
     dispatch(getUser(userInfo))
-    console.log(userInfo);
-    console.log(user);
+ 
   } ,[data])
 
   

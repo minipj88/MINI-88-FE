@@ -17,7 +17,7 @@ const Profile = () => {
       setIsEditProfile(prev => !prev)
     }
   }
-  console.log(selectedImage);
+
   return (
     <>
     {isEditProfile && <EditProfile changeModeHandler={() => changeModeHandler('기본')} selectedImage={selectedImage} setSelectedImage={setSelectedImage} imageInputRef={imageInputRef} />}
