@@ -8,7 +8,7 @@ import EditProfile from './EditProfile';
 const Profile = () => {
   const user = useAppSelector(state => state.auth.userData);
   const {name,age,email,job} = user;
-  const [selectedImage,setSelectedImage] = useState('')
+  const [selectedImage,setSelectedImage] = useState(user.profilePhoto || '')
   const [isEditProfile,setIsEditProfile] = useState(false)
   const imageInputRef = useRef<HTMLInputElement>(null)
 
@@ -21,7 +21,7 @@ const Profile = () => {
   return (
     <>
     {isEditProfile && <EditProfile changeModeHandler={() => changeModeHandler('기본')} selectedImage={selectedImage} setSelectedImage={setSelectedImage} imageInputRef={imageInputRef} />}
-    {!isEditProfile && <BasicProfile changeModeHandler={() => changeModeHandler('수정')} selectedImage={selectedImage} />}
+    {!isEditProfile && <BasicProfile changeModeHandler={() => changeModeHandler('수정')} selectedImage={selectedImage}  setSelectedImage={setSelectedImage} />}
     </>
   );
 };

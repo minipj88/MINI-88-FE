@@ -3,6 +3,7 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { authReducer,authApi } from "./slices/authSlice";
 import { productReducer } from "./slices/productSlice";
 import { creditScoreReducer } from "./slices/creditScoreSlice";
+import { profileApi } from "./slices/profileSlice";
 
 
 
@@ -11,9 +12,10 @@ export const store = configureStore({
     auth:authReducer,
     product:productReducer,
     creditScore:creditScoreReducer,
-    [authApi.reducerPath] : authApi.reducer
+    [authApi.reducerPath] : authApi.reducer,
+    [profileApi.reducerPath] : profileApi.reducer
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(authApi.middleware)
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(authApi.middleware,profileApi.middleware)
 })
 
 

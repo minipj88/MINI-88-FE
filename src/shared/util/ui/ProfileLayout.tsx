@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import JobDropdownList from '../../../components/auth/signup/JobDropdownList';
 import { FormValueTypes } from '../../../components/auth/signup/SignupForm';
+import { useProfileChangeMutation } from '../../../store/slices/profileSlice';
 import { useAppSelector } from '../../../store/store';
 import Button from './Button';
 
@@ -104,7 +105,7 @@ const ProfileLayout = ({setSelectedImage,selectedImage,children,changeModeHandle
     job: user.job,
     profilePhoto: selectedImage || user.profilePhoto
   })
-  
+  const [profileChange,{data}] = useProfileChangeMutation();
   const inputChangeHandler = (e:ChangeEvent<HTMLInputElement>) => {
     const {currentTarget:{name,value}} = e;
     setFormValue({
@@ -115,14 +116,25 @@ const ProfileLayout = ({setSelectedImage,selectedImage,children,changeModeHandle
   const backToBasickProfileHandler = () => {
     changeModeHandler()
     setSelectedImage('')
+    
   }
+
+  const profileChangeHandler = () => {
+    profileChange({
+      age:formValue.age,
+      job:formValue.job,
+      name:formValue.name,
+      profilePhoto:selectedImage,
+    })
+  }
+
   console.log(formValue);
   return (
     <Wrapper>
       <Header>
       <Link to="/"><img src={'/close.png'} width={10} height={10} /></Link>
     <p>{user.name}님의 정보</p>
-    <p onClick={changeModeHandler}>{type === 'edit' ? "뒤로" : "수정"}</p>
+    <p onClick={backToBasickProfileHandler}>{type === 'edit' ? "뒤로" : "수정"}</p>
     </Header>
     <input ref={imageInputRef} type="file" hidden onChange={imageChangeHandler} />
     <ImageBox >
@@ -142,7 +154,7 @@ const ProfileLayout = ({setSelectedImage,selectedImage,children,changeModeHandle
     {children}
     {type ==="edit"
     && <div style={{position:'absolute', bottom:'4px',right:"0",left:'2px',width:'100%'}}>
-    <Button width='94%' height='42px' color="white" text="수정완료" onClick={() => {}} bgColor="#0066F6" buttonBorder='none' totalValid={true} />
+    <Button width='94%' height='42px' color="white" text="수정완료" onClick={profileChangeHandler} bgColor="#0066F6" buttonBorder='none' totalValid={true} />
     </div>}
     </Wrapper>
   );
