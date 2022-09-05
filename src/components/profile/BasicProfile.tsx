@@ -15,9 +15,6 @@ const BasicProfile = ({changeModeHandler,selectedImage,setSelectedImage}:BasicPr
   
   return (
     <ProfileLayout selectedImage={selectedImage} changeModeHandler={changeModeHandler} onClick={changeModeHandler} setSelectedImage={setSelectedImage} type="basic">
-    
-
-    
   </ProfileLayout>
   );
 };

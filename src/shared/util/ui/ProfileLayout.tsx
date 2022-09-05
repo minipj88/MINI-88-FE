@@ -47,6 +47,9 @@ const ImageChangeButtonBox = styled.div`
   background-color: #fff;
   
 `
+const InfoTitle = styled.span`
+  min-width:60px;
+`
 
 const ImageChangeButton = styled.button`
   position:absolute;
@@ -146,10 +149,10 @@ const ProfileLayout = ({setSelectedImage,selectedImage,children,changeModeHandle
     </ImageChangeButtonBox>
     </ImageBox>
     <div>
-      <InfomationBox><span style={{minWidth:'60px'}}>성함</span>{type === 'basic' ? <span>{user.name}</span> : <input name="name" type="text" value={formValue.name} onChange={inputChangeHandler} />}</InfomationBox>
-      <InfomationBox><span style={{minWidth:'60px'}}>직업</span>{type === 'basic' ? <span>{user.job}</span> : <JobDropdownList formValue={formValue} setFormValue={setFormValue} size='300px' />}</InfomationBox>
-      <InfomationBox><span style={{minWidth:'60px'}}>나이</span>{type === 'basic' ? <span>{user.age}</span> : <input name="age" type="number" min={20} max={100} value={formValue.age} onChange={inputChangeHandler} />}</InfomationBox>
-      <InfomationBox><span style={{minWidth:'60px'}}>이메일</span><span>{user.email}</span></InfomationBox>
+      <InfomationBox><InfoTitle style={{minWidth:'60px'}}>성함</InfoTitle>{type === 'basic' ? <span>{user.name}</span> : <input name="name" type="text" value={formValue.name} onChange={inputChangeHandler} />}</InfomationBox>
+      <InfomationBox><InfoTitle style={{minWidth:'60px'}}>직업</InfoTitle>{type === 'basic' ? <span>{user.job}</span> : <JobDropdownList formValue={formValue} setFormValue={setFormValue} size='300px' />}</InfomationBox>
+      <InfomationBox><InfoTitle style={{minWidth:'60px'}}>나이</InfoTitle>{type === 'basic' ? <span>{user.age}</span> : <input name="age" type="number" min={20} max={100} value={formValue.age} onChange={inputChangeHandler} />}</InfomationBox>
+      <InfomationBox><InfoTitle style={{minWidth:'60px'}}>이메일</InfoTitle><span>{user.email}</span></InfomationBox>
     </div>
     {children}
     {type ==="edit"
