@@ -104,7 +104,7 @@ const authSlice = createSlice({
       state.userData.profilePhoto = action.payload.profilePhoto
     },
     logout(state) {
-      localStorage.removeItem('user');
+      localStorage.clear();
       state.userData.age = 0
       state.userData.credit = 0
       state.userData.email = ''
@@ -112,14 +112,14 @@ const authSlice = createSlice({
       state.userData.name = ''
       state.userData.point = 0
       state.userData.profilePhoto = ''
-      window.location.pathname = '/login';
+      window.location.pathname = '/signin';
     }
   }
 })
 
 
 export const { useSigninMutation, useSignupMutation } = authApi
-export const {getUser} = authSlice.actions;
+export const {getUser,logout} = authSlice.actions;
 export const authReducer = authSlice.reducer;
 
 

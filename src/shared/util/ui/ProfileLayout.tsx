@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import JobDropdownList from '../../../components/auth/signup/JobDropdownList';
 import { FormValueTypes } from '../../../components/auth/signup/SignupForm';
+import { logout } from '../../../store/slices/authSlice';
 import { useProfileChangeMutation } from '../../../store/slices/profileSlice';
-import { useAppSelector } from '../../../store/store';
+import { useAppDispatch, useAppSelector } from '../../../store/store';
 import Button from './Button';
 
 
@@ -108,6 +109,7 @@ const ProfileLayout = ({setSelectedImage,selectedImage,children,changeModeHandle
     job: user.job,
     profilePhoto: selectedImage || user.profilePhoto
   })
+  const dispatch = useAppDispatch()
   const [profileChange,{data}] = useProfileChangeMutation();
   const inputChangeHandler = (e:ChangeEvent<HTMLInputElement>) => {
     const {currentTarget:{name,value}} = e;
@@ -131,6 +133,9 @@ const ProfileLayout = ({setSelectedImage,selectedImage,children,changeModeHandle
     })
   }
 
+  const logoutHandler = () => {
+    dispatch(logout())
+  }
 
   return (
     <Wrapper>
@@ -158,6 +163,10 @@ const ProfileLayout = ({setSelectedImage,selectedImage,children,changeModeHandle
     {type ==="edit"
     && <div style={{position:'absolute', bottom:'4px',right:"0",left:'2px',width:'100%'}}>
     <Button width='94%' height='42px' color="white" text="수정완료" onClick={profileChangeHandler} bgColor="#0066F6" buttonBorder='none' totalValid={true} />
+    </div>}
+    {type ==="basic"
+    && <div style={{position:'absolute', bottom:'4px',right:"0",left:'2px',width:'100%'}}>
+    <Button width='94%' height='42px' color="white" text="로그아웃" onClick={logoutHandler} bgColor="#0066F6" buttonBorder='none' totalValid={true} />
     </div>}
     </Wrapper>
   );
