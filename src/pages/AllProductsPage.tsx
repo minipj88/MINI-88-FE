@@ -63,6 +63,7 @@ const AllProductsPage = () => {
   const [pageNumber, setPageNumber] = useState(0);
   // const dispatch = useAppDispatch();
   const { data } = useGetProductListQuery(pageNumber);
+
   // dispatch(getProduct(data?.content));
   // console.log(data?.content);
 
@@ -79,6 +80,8 @@ const AllProductsPage = () => {
   // };
 
   // const { setTarget } = useIntersectionObserver({ onIntersect });
+
+
 
   const prevButtonHandler = () => {
     setPageNumber((prev) => prev - 1);

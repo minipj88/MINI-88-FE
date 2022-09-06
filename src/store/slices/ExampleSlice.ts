@@ -8,17 +8,17 @@ interface ExampleStateTypes {
   allString: string;
 }
 
-const initialState:ExampleStateTypes = {
+const initialState: ExampleStateTypes = {
   hello: 'hello',
   allString: ''
 }
 
 const exampleSlice = createSlice({
-  name:'example',
+  name: 'example',
   initialState,
   reducers: {
-    helloWorld(state,action:PayloadAction<HelloWorldPayloadTypes>) {
-      state.allString = state.hello  + action.payload.myname
+    helloWorld(state, action: PayloadAction<HelloWorldPayloadTypes>) {
+      state.allString = state.hello + action.payload.myname
 
     }
   },
@@ -26,4 +26,4 @@ const exampleSlice = createSlice({
 
 
 export const exampleReducer = exampleSlice.reducer;
-export const {helloWorld} = exampleSlice.actions;
+export const { helloWorld } = exampleSlice.actions;
