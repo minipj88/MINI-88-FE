@@ -21,7 +21,6 @@ const ProductCard = styled.div<StyleProps>`
   margin: 24px auto;
   padding: 18px 18px 12px 18px;
   border-radius: 12px;
-  /* box-shadow: 0 3px 3px #ccc; */
   filter: drop-shadow(1px 1px 6px rgba(0, 0, 0, 0.3));
   box-sizing: border-box;
 
