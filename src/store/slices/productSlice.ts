@@ -2,7 +2,7 @@ import { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
 
-// createApi 작성
+
 interface ContentObjectType {
   age: number;
   cbName: string | null;
@@ -53,7 +53,7 @@ const productSlice = createSlice({
   },
 });
 
-// createAPi export 하기
+
 export const { useGetProductListQuery } = productApi;
 export const { getProduct } = productSlice.actions;
 export const productReducer = productSlice.reducer;

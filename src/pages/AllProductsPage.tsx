@@ -61,7 +61,7 @@ const AllProductsPage = () => {
   // const products = useAppSelector((state) => state.product.content);
   // const [products, setProducts] = useState<ReturnProductType['content']>([]);
   const [pageNumber, setPageNumber] = useState(0);
-  // const dispatch = useAppDispatch();
+  
   const { data } = useGetProductListQuery(pageNumber);
 
   // dispatch(getProduct(data?.content));
