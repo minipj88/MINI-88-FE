@@ -12,7 +12,7 @@ const ResultContainer = styled.div`
   flex-direction: column;
   align-items: center;
 
-  padding-top: 36px;
+  padding-top: 100px;
 `
 const TextBox = styled.div`
   display: flex;
@@ -22,18 +22,17 @@ const TextBox = styled.div`
   margin-top: 26px;
 `
 const LineHeight = styled.div`
-  margin-top: 6px;
+  margin-top: 10px;
 `
 const Strong = styled.span`
-  font-size:  34px;
+  font-size:  36px;
   font-weight: 700;
   color: #0066F6;
 `
 const Normal = styled.span`
-  font-size:  32px;
+  font-size:  34px;
   font-weight: 600;
 `
-
 
 function ResultScore({finalScore, User = '김명성'}: PropsTypes) {  
   return (

@@ -2,8 +2,9 @@ import { configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { authReducer, authApi } from './slices/authSlice';
 import { productApi, productReducer } from './slices/productSlice';
-import { creditScoreReducer } from './slices/creditScoreSlice';
+import { creditScoreReducer, userCreditApi } from './slices/creditScoreSlice';
 import { profileApi } from './slices/profileSlice';
+
 
 export const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ export const store = configureStore({
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(authApi.middleware, profileApi.middleware, productApi.middleware),
+
 });
 
 type RootState = ReturnType<typeof store.getState>;

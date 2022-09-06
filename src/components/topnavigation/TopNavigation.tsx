@@ -10,7 +10,9 @@ const Wrapper = styled.nav`
   width: 100%;
   height: 82px;
   position: fixed;
+  top:0;
   background-color: #eee;
+  z-index: 9;
 `;
 const Avatar = styled.div`
   width: 36px;

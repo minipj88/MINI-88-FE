@@ -8,7 +8,6 @@ import SignupPage from './pages/SignupPage';
 import SigninPage from './pages/SigninPage';
 import OnBoardingPage from './pages/OnBoardingPage';
 import NotFoundPage from './pages/NotFoundPage';
-import TopNavigation from './components/topnavigation/TopNavigation';
 import { useAppDispatch, useAppSelector } from './store/store';
 import { useEffect } from 'react';
 import { getUser, UserInfo, useSigninMutation } from './store/slices/authSlice';

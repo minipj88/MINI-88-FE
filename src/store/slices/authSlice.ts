@@ -1,6 +1,5 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 interface ReturnSignupType {
   data: {
@@ -11,7 +10,7 @@ interface ReturnSignupType {
     age: string;
     profilePhoto: string;
     email: string;
-  }
+  };
 }
 
 interface ReturnSigninType {
@@ -25,11 +24,11 @@ interface ReturnSigninType {
 }
 
 interface ActionSignupType {
-  email: string
-  name: string
-  job: string
-  age: number
-  password: string
+  email: string;
+  name: string;
+  job: string;
+  age: number;
+  password: string;
   profilePhoto: string;
 }
 
@@ -44,25 +43,25 @@ export const authApi = createApi({
       query: (data) => ({
         url: 'register',
         method: 'POST',
-        body: data
-      })
+        body: data,
+      }),
     }),
     signin: builder.mutation<ReturnSigninType, Partial<ActionSignupType>>({
       query: (data) => ({
         url: 'login',
         method: 'POST',
-        body: data
-      })
+        body: data,
+      }),
     }),
     getMember: builder.query<ReturnSignupType, Partial<ActionSignupType>>({
       query: (data) => ({
         url: 'login',
         method: 'POST',
-        body: data
-      })
-    })
-  })
-})
+        body: data,
+      }),
+    }),
+  }),
+});
 
 export interface UserInfo {
   userData: {
@@ -73,8 +72,7 @@ export interface UserInfo {
     job: string;
     name: string;
     profilePhoto: string;
-  }
-
+  };
 }
 
 const initialState: UserInfo = {
@@ -86,40 +84,37 @@ const initialState: UserInfo = {
     job: '',
     name: '',
     profilePhoto: '',
-  }
-}
+  },
+};
 
 const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    getUser(state, action: PayloadAction<UserInfo["userData"]>) {
+    getUser(state, action: PayloadAction<UserInfo['userData']>) {
       // state.userData = action.payload;
-      state.userData.age = action.payload.age
-      state.userData.credit = action.payload.credit
-      state.userData.email = action.payload.email
-      state.userData.job = action.payload.job
-      state.userData.name = action.payload.name
-      state.userData.point = action.payload.point
-      state.userData.profilePhoto = action.payload.profilePhoto
+      state.userData.age = action.payload.age;
+      state.userData.credit = action.payload.credit;
+      state.userData.email = action.payload.email;
+      state.userData.job = action.payload.job;
+      state.userData.name = action.payload.name;
+      state.userData.point = action.payload.point;
+      state.userData.profilePhoto = action.payload.profilePhoto;
     },
     logout(state) {
       localStorage.clear();
-      state.userData.age = 0
-      state.userData.credit = 0
-      state.userData.email = ''
-      state.userData.job = ''
-      state.userData.name = ''
-      state.userData.point = 0
-      state.userData.profilePhoto = ''
+      state.userData.age = 0;
+      state.userData.credit = 0;
+      state.userData.email = '';
+      state.userData.job = '';
+      state.userData.name = '';
+      state.userData.point = 0;
+      state.userData.profilePhoto = '';
       window.location.pathname = '/signin';
-    }
-  }
-})
+    },
+  },
+});
 
-
-export const { useSigninMutation, useSignupMutation } = authApi
+export const { useSigninMutation, useSignupMutation } = authApi;
 export const { getUser, logout } = authSlice.actions;
 export const authReducer = authSlice.reducer;
-
-
