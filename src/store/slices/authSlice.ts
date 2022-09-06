@@ -1,6 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit"
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-
+import { createSlice } from '@reduxjs/toolkit';
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 interface ReturnSignupType {
   data: {
@@ -10,66 +9,65 @@ interface ReturnSignupType {
     job: string;
     age: string;
     profilePhoto: string;
-    email:string;
-  }
+    email: string;
+  };
 }
 interface ActionSignupType {
-  email: string
-  nickname: string
-  job: string
-  age: number
-  password: string
+  email: string;
+  nickname: string;
+  job: string;
+  age: number;
+  password: string;
   profilePhoto: string;
 }
 
-  export const authApi = createApi({
-    reducerPath: 'auth/authApi',
-    tagTypes: ['Auth'],
-    baseQuery: fetchBaseQuery({
-      baseUrl: import.meta.env.VITE_BASE_URL,
+export const authApi = createApi({
+  reducerPath: 'auth/authApi',
+  tagTypes: ['Auth'],
+  baseQuery: fetchBaseQuery({
+    baseUrl: import.meta.env.VITE_BASE_URL,
+  }),
+  endpoints: (builder) => ({
+    signup: builder.mutation<ReturnSignupType, ActionSignupType>({
+      query: (data) => ({
+        url: 'register',
+        method: 'POST',
+        body: data,
+      }),
     }),
-    endpoints: (builder) => ({
-      signup: builder.mutation<ReturnSignupType, ActionSignupType>({
-        query: (data) => ({
-          url: 'register',
-          method: 'POST',
-          body: data
-        })
+    signin: builder.mutation<ReturnSignupType, Partial<ActionSignupType>>({
+      query: (data) => ({
+        url: 'login',
+        method: 'POST',
+        body: data,
       }),
-      signin: builder.mutation<ReturnSignupType, Partial<ActionSignupType>>({
-        query: (data) => ({
-          url: 'login',
-          method: 'POST',
-          body: data
-        })
+    }),
+    getMember: builder.query<ReturnSignupType, Partial<ActionSignupType>>({
+      query: (data) => ({
+        url: 'login',
+        method: 'POST',
+        body: data,
       }),
-      getMember: builder.query<ReturnSignupType, Partial<ActionSignupType>>({
-        query: (data) => ({
-          url: 'login',
-          method: 'POST',
-          body: data
-        })
-      })
-    })
-  })
-
+    }),
+  }),
+});
 
 const initialState = {
   userData: {
-    email: '',
+    email: 'asfasf',
     username: '',
     job: '',
     age: '',
   },
-  accessToken: ''
-}
+  accessToken: '',
+};
 
 const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
     getToken(state, action) {
-      state.userData = action.payload.data
+      state.userData = action.payload.data;
     },
     logout(state) {
       localStorage.removeItem('user');
@@ -78,14 +76,11 @@ const authSlice = createSlice({
         username: '',
         job: '',
         age: '',
-      }
+      };
       window.location.pathname = '/login';
-    }
-  }
-})
+    },
+  },
+});
 
-
-export const { useSigninMutation, useSignupMutation } = authApi
+export const { useSigninMutation, useSignupMutation } = authApi;
 export const authReducer = authSlice.reducer;
-
-

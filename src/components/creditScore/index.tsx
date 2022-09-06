@@ -1,15 +1,13 @@
-import { useState } from 'react'
-import UserCreditScore from './UserCreditScore'
-import styled from 'styled-components'
-import CreditProducts from './CreditProducts'
-
+import { useState } from 'react';
+import UserCreditScore from './UserCreditScore';
+import styled from 'styled-components';
+import CreditProducts from './CreditProducts';
 
 const QuizPageContainer = styled.div`
   height: 100%;
   position: relative;
-  margin: 82px 16px 0 16px;
-`
-
+  margin: 82px 16px 84px 16px;
+`;
 
 function CreditScoreTest() {
   return (
@@ -20,7 +18,7 @@ function CreditScoreTest() {
       {/* 신용상품 */}
       <CreditProducts />
     </QuizPageContainer>
-  )
+  );
 }
 
-export default CreditScoreTest
+export default CreditScoreTest;

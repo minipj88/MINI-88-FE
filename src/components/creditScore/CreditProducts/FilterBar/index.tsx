@@ -1,34 +1,33 @@
-import { useState } from 'react'
-import styled from 'styled-components'
-
+import { useState } from 'react';
+import styled from 'styled-components';
 
 interface ButtonStyleProps {
-  border: string
+  border: string;
 }
 interface buttonTypes {
-  id: string
-  name: string
-  tap: boolean
-  img: string
-  size: string
-  filter: string
+  id: string;
+  name: string;
+  tap: boolean;
+  img: string;
+  size: string;
+  filter: string;
 }
 interface textStyleProps {
-  weight: string
-  color: string
+  weight: string;
+  color: string;
 }
 
 const Container = styled.div`
   width: 100%;
   display: flex;
-  margin: 18px 0;
-`
+  margin: 26px 0;
+`;
 const ButtonBox = styled.div`
   flex-grow: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-`
+`;
 const FilterButton = styled.div<ButtonStyleProps>`
   background-color: #efefef;
   width: 50px !important;
@@ -36,18 +35,17 @@ const FilterButton = styled.div<ButtonStyleProps>`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: ${({border}) => border};
+  border: ${({ border }) => border};
   border-radius: 50%;
   box-sizing: border-box;
-`
+`;
 const Title = styled.span<textStyleProps>`
   display: inline-block;
   margin-top: 10px;
   font-size: 14px;
-  font-weight: ${({weight}) => weight};
-  color: ${({color}) => color};
-`
-
+  font-weight: ${({ weight }) => weight};
+  color: ${({ color }) => color};
+`;
 
 function FilterBar() {
   const [searchFilterButton, setSearchFilterButton] = useState<buttonTypes[]>([
@@ -57,7 +55,7 @@ function FilterBar() {
       tap: true,
       img: '/creditScoreImg/allCategoryIcon.png',
       size: '24px',
-      filter: 'all'
+      filter: 'all',
     },
     {
       id: 'B2',
@@ -65,7 +63,7 @@ function FilterBar() {
       tap: false,
       img: '/creditScoreImg/creditIcon.png',
       size: '18px',
-      filter: 'credit'
+      filter: 'credit',
     },
     {
       id: 'B3',
@@ -73,7 +71,7 @@ function FilterBar() {
       tap: false,
       img: '/creditScoreImg/houseIcon.png',
       size: '20px',
-      filter: 'house'
+      filter: 'house',
     },
     {
       id: 'B4',
@@ -81,32 +79,37 @@ function FilterBar() {
       tap: false,
       img: '/creditScoreImg/checkIcon.png',
       size: '18px',
-      filter: 'funds'
-    }
-  ])
-
+      filter: 'funds',
+    },
+  ]);
 
   function buttonHandler(id: string, filter: string) {
-    let newFilterButton = searchFilterButton.map(item => item.id === id ? {...item, tap: true} : {...item, tap: false})
-    setSearchFilterButton(newFilterButton)
+    let newFilterButton = searchFilterButton.map((item) =>
+      item.id === id ? { ...item, tap: true } : { ...item, tap: false },
+    );
+    setSearchFilterButton(newFilterButton);
     // api 요청 item.filter
   }
 
-  
   return (
     <Container>
       {searchFilterButton.map((item) => {
         return (
           <ButtonBox key={item.id}>
-            <FilterButton onClick={() => buttonHandler(item.id, item.filter)} border={item.tap ? '4px solid #0066F6' : 'none'} >
+            <FilterButton
+              onClick={() => buttonHandler(item.id, item.filter)}
+              border={item.tap ? '4px solid #0066F6' : 'none'}
+            >
               <img src={item.img} alt="" height={item.size} />
             </FilterButton>
-            <Title weight={item.tap ? '600' : '300'} color={item.tap ? '#333' : '#707070'}>{item.name}</Title>
+            <Title weight={item.tap ? '600' : '300'} color={item.tap ? '#333' : '#707070'}>
+              {item.name}
+            </Title>
           </ButtonBox>
-        )
+        );
       })}
     </Container>
   );
 }
 
-export default FilterBar
+export default FilterBar;
