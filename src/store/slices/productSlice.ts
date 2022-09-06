@@ -1,29 +1,58 @@
-import { createSlice } from "@reduxjs/toolkit"
-
-
-
+import { PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
 
 // createApi 작성
-
-
-
-
-const initialState = {
-
-  
+interface ContentObjectType {
+  age: number;
+  cbName: string | null;
+  financialCompanyName: string;
+  id: number;
+  job: string;
+  image: string;
+  joinWay: string;
+  maxAmount: string;
+  maxRate: number;
+  minRate: number;
+  productName: string;
+  productNumber: string;
+  productType: string;
+}
+export interface ReturnProductType {
+  content: ContentObjectType[];
+  totalPages?: number;
 }
 
+export const productApi = createApi({
+  reducerPath: 'product/productApi',
+  tagTypes: ['product'],
+  baseQuery: fetchBaseQuery({
+    baseUrl: import.meta.env.VITE_BASE_URL,
+  }),
+  endpoints: (builder) => ({
+    getProductList: builder.query<ReturnProductType, number>({
+      query: (pageNumber) => ({
+        url: `main?page=${pageNumber}`,
+      }),
+    }),
+  }),
+});
+
+const initialState: ReturnProductType = {
+  content: [],
+};
 
 const productSlice = createSlice({
-  name:'product',
+  name: 'products',
   initialState,
-  reducers: {}
-
-})
-
+  reducers: {
+    getProduct(state, action: PayloadAction<ReturnProductType['content']>) {
+      state.content = [...action.payload];
+    },
+  },
+});
 
 // createAPi export 하기
-
-
+export const { useGetProductListQuery } = productApi;
+export const { getProduct } = productSlice.actions;
 export const productReducer = productSlice.reducer;
-

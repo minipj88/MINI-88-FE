@@ -3,77 +3,77 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import JobDropdownList from '../../../components/auth/signup/JobDropdownList';
 import { FormValueTypes } from '../../../components/auth/signup/SignupForm';
-import { useAppSelector } from '../../../store/store';
+import { logout } from '../../../store/slices/authSlice';
+import { useProfileChangeMutation } from '../../../store/slices/profileSlice';
+import { useAppDispatch, useAppSelector } from '../../../store/store';
 import Button from './Button';
 
-
 const Wrapper = styled.div`
-  font-family: 'Noto sans KR',sans-serif;
-  width:100%;
-`
-
+  font-family: 'Noto sans KR', sans-serif;
+  width: 100%;
+`;
 
 const Header = styled.div`
-  display:flex;
-  justify-content:space-between;
+  display: flex;
+  justify-content: space-between;
   padding: 16px;
-  align-items:center;
-  
-  p{
-    font-weight:bold;
+  align-items: center;
+
+  p {
+    font-weight: bold;
   }
-`
+`;
 const ImageBox = styled.div`
-  position:relative;
+  position: relative;
   width: 96px;
   height: 96px;
   border-radius: 96px;
-  
+
   margin: 0 auto;
-  img{
+  img {
     border-radius: 96px;
   }
-`
+`;
 
 const ImageChangeButtonBox = styled.div`
- 
   position: absolute;
   width: 36px;
   height: 36px;
-  border-radius:36px;
-  bottom:-2px;
-  right:-4px; 
+  border-radius: 36px;
+  bottom: -2px;
+  right: -4px;
   background-color: #fff;
-  
-`
+`;
+const InfoTitle = styled.span`
+  min-width: 60px;
+`;
 
 const ImageChangeButton = styled.button`
-  position:absolute;
+  position: absolute;
   width: 28px;
   height: 28px;
-  border-radius: 28px; 
-  border:none;
+  border-radius: 28px;
+  border: none;
   background-color: #ddd;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  left:50%;
-  top:50%;
-  transform:translate(-50%,-50%);
-`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+`;
 
 const InfomationBox = styled.div`
-  display:flex;
+  display: flex;
   justify-content: space-between;
-  align-items:center;
-  font-size:20px;
+  align-items: center;
+  font-size: 20px;
   margin-top: 40px;
   min-height: 42px;
-  span{
+  span {
     padding: 4px 10px;
-    
   }
-  input{
+  input {
     padding: 2px;
     margin-right: 14px;
     width: 100%;
@@ -82,63 +82,143 @@ const InfomationBox = styled.div`
     border: 1px solid #ccc;
     border-radius: 5px;
   }
-`
+`;
 interface ProfileLayoutProps {
-  selectedImage:string;
-  children:ReactNode;
-  changeModeHandler:() => void
-  onClick?: () => void
-  imageInputRef?: React.RefObject<HTMLInputElement>
+  selectedImage: string;
+  
+  changeModeHandler: () => void;
+  onClick?: () => void;
+  imageInputRef?: React.RefObject<HTMLInputElement>;
   type: 'basic' | 'edit';
-  imageChangeHandler?: (e: ChangeEvent<HTMLInputElement>) => void
+  imageChangeHandler?: (e: ChangeEvent<HTMLInputElement>) => void;
+  setSelectedImage: React.Dispatch<React.SetStateAction<string>>;
 }
-const ProfileLayout = ({selectedImage,children,changeModeHandler,onClick,imageInputRef,type,imageChangeHandler}:ProfileLayoutProps) => {
-  const user = useAppSelector(state => state.auth.userData);
-  const [formValue,setFormValue] = useState<FormValueTypes>({
-    email: '',
+const ProfileLayout = ({
+  setSelectedImage,
+  selectedImage,
+  
+  changeModeHandler,
+  onClick,
+  imageInputRef,
+  type,
+  imageChangeHandler,
+}: ProfileLayoutProps) => {
+  const user = useAppSelector((state) => state.auth.userData);
+  const [formValue, setFormValue] = useState<FormValueTypes>({
+    email: user.email,
     password: '',
     passwordConfirm: '',
-    age:0,
-    username: user.username,
+    age: user.age,
+    name: user.name,
     job: user.job,
-    profilePhoto: ''
-  })
-  
-  const inputChangeHandler = (e:ChangeEvent<HTMLInputElement>) => {
-    const {currentTarget:{name,value}} = e;
+    profilePhoto: selectedImage || user.profilePhoto,
+  });
+  const dispatch = useAppDispatch();
+  const [profileChange, { data }] = useProfileChangeMutation();
+  const inputChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    const {
+      currentTarget: { name, value },
+    } = e;
     setFormValue({
       ...formValue,
-      [name]:value
-    })
-  }
-  console.log(formValue);
+      [name]: value,
+    });
+  };
+  const backToBasickProfileHandler = () => {
+    changeModeHandler();
+    setSelectedImage('');
+  };
+
+  const profileChangeHandler = () => {
+    profileChange({
+      age: formValue.age,
+      job: formValue.job,
+      name: formValue.name,
+      profilePhoto: selectedImage,
+    });
+  };
+
+  const logoutHandler = () => {
+    dispatch(logout());
+  };
+
   return (
     <Wrapper>
       <Header>
-      <Link to="/"><img src={'/close.png'} width={10} height={10} /></Link>
-    <p>김명성님의 정보</p>
-    <p onClick={changeModeHandler}>{type === 'edit' ? "뒤로" : "수정"}</p>
-    </Header>
-    <input ref={imageInputRef} type="file" hidden onChange={imageChangeHandler} />
-    <ImageBox >
-    <img src={selectedImage || `/basicprofile.png`} width={96} height={96}/>
-    <ImageChangeButtonBox>
-    <ImageChangeButton onClick={onClick}>
-      <img src="/add.png" width={14} height={13.4} />
-    </ImageChangeButton>
-    </ImageChangeButtonBox>
-    </ImageBox>
-    <div>
-      <InfomationBox><span style={{minWidth:'60px'}}>닉네임</span>{type === 'basic' ? <span>김명성</span> : <input name="username" type="text" value={formValue.username} onChange={inputChangeHandler} />}</InfomationBox>
-      <InfomationBox><span style={{minWidth:'60px'}}>직업</span>{type === 'basic' ? <span>무직</span> : <JobDropdownList formValue={formValue} setFormValue={setFormValue} size='300px' />}</InfomationBox>
-      <InfomationBox><span style={{minWidth:'60px'}}>나이</span>{type === 'basic' ? <span>33</span> : <input name="age" type="number" min={20} max={100} value={formValue.age} onChange={inputChangeHandler} />}</InfomationBox>
-      <InfomationBox><span style={{minWidth:'60px'}}>이메일</span><span>forwarm5891@gmail.com</span></InfomationBox>
-    </div>
-    {children}
-    {type ==="edit"
-    && <div style={{position:'absolute', bottom:'4px',right:"0",left:'2px',width:'100%'}}>
-    <Button width='94%' height='42px' color="white" text="수정완료" onClick={() => {}} bgColor="#0066F6" buttonBorder='none' totalValid={true} />
-    </div>}
+        <Link to="/">
+          <img src={'/close.png'} width={10} height={10} />
+        </Link>
+        <p>{user.name}님의 정보</p>
+        <p onClick={backToBasickProfileHandler}>{type === 'edit' ? '뒤로' : '수정'}</p>
+      </Header>
+      <input ref={imageInputRef} type="file" hidden onChange={imageChangeHandler} />
+      <ImageBox>
+        <img src={selectedImage || 'https://t1.daumcdn.net/cfile/tistory/2513B53E55DB206927'} width={96} height={96} />
+        <ImageChangeButtonBox>
+          <ImageChangeButton onClick={onClick}>
+            <img src="/add.png" width={14} height={13.4} />
+          </ImageChangeButton>
+        </ImageChangeButtonBox>
+      </ImageBox>
+      <div>
+        <InfomationBox>
+          <InfoTitle style={{ minWidth: '60px' }}>성함</InfoTitle>
+          {type === 'basic' ? (
+            <span>{user.name}</span>
+          ) : (
+            <input name="name" type="text" value={formValue.name} onChange={inputChangeHandler} />
+          )}
+        </InfomationBox>
+        <InfomationBox>
+          <InfoTitle style={{ minWidth: '60px' }}>직업</InfoTitle>
+          {type === 'basic' ? (
+            <span>{user.job}</span>
+          ) : (
+            <JobDropdownList formValue={formValue} setFormValue={setFormValue} size="300px" />
+          )}
+        </InfomationBox>
+        <InfomationBox>
+          <InfoTitle style={{ minWidth: '60px' }}>나이</InfoTitle>
+          {type === 'basic' ? (
+            <span>{user.age}</span>
+          ) : (
+            <input name="age" type="number" min={20} max={100} value={formValue.age} onChange={inputChangeHandler} />
+          )}
+        </InfomationBox>
+        <InfomationBox>
+          <InfoTitle style={{ minWidth: '60px' }}>이메일</InfoTitle>
+          <span>{user.email}</span>
+        </InfomationBox>
+      </div>
+      
+      {type === 'edit' && (
+        <div style={{ position: 'absolute', bottom: '4px', right: '0', left: '2px', width: '100%' }}>
+          <Button
+            width="94%"
+            height="42px"
+            color="white"
+            text="수정완료"
+            onClick={profileChangeHandler}
+            bgColor="#0066F6"
+            buttonBorder="none"
+            totalValid={true}
+          />
+        </div>
+      )}
+      {type === 'basic' && (
+        <div style={{ position: 'absolute', bottom: '4px', right: '0', left: '2px', width: '100%' }}>
+          <Button
+            width="94%"
+            height="42px"
+            color="white"
+            text="로그아웃"
+            onClick={logoutHandler}
+            bgColor="#0066F6"
+            buttonBorder="none"
+            totalValid={true}
+          />
+        </div>
+      )}
     </Wrapper>
   );
 };
