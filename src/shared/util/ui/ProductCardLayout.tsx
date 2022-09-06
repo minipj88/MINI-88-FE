@@ -17,11 +17,14 @@ const ProductCard = styled.div<StyleProps>`
     (Number(props.index) % 3 === 0 && '#FFEDF2') ||
     (Number(props.index) % 3 === 1 && '#E2F3F3') ||
     (Number(props.index) % 3 === 2 && '#F8EDFC')};
-  height: 110px;
-  margin: 24px 0;
+  width: 90%;
+  margin: 24px auto;
   padding: 18px 18px 12px 18px;
   border-radius: 12px;
-  box-shadow: 0 3px 3px #ccc;
+  /* box-shadow: 0 3px 3px #ccc; */
+  filter: drop-shadow(1px 1px 6px rgba(0, 0, 0, 0.3));
+  box-sizing: border-box;
+
   &:first-child {
     margin-top: 0;
   }
@@ -36,11 +39,19 @@ const ContentsBox = styled.div`
 `;
 const ProductInfoBox = styled.div`
   flex-grow: 1;
+  width: 180px;
 `;
 const ProductTypeBox = styled.div`
   margin-bottom: 6px;
   font-size: 14px;
   color: #333;
+`;
+const ProductText = styled.div<StyleProps>`
+  font-size: ${({ size }) => size};
+  font-weight: 700;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 `;
 const ProductType = styled.span`
   position: relative;
@@ -100,6 +111,8 @@ interface dataProps {
 }
 
 function ProductCardLayout({ isBookmarkOn, data, index, bookmarkHandler, application }: dataProps) {
+  let editBankName = data.financialCompanyName.replace('한국스탠다드차타드은행', 'SC제일은행');
+
   return (
     <ProductCard index={index}>
       <ImgBox>
@@ -113,10 +126,10 @@ function ProductCardLayout({ isBookmarkOn, data, index, bookmarkHandler, applica
       <ContentsBox>
         <ProductInfoBox>
           <ProductTypeBox>
-            <span>{data.financialCompanyName}</span>
+            <span>{editBankName}</span>
             <ProductType>{data.productType}대출</ProductType>
           </ProductTypeBox>
-          <Text size="20px">{data.productName}</Text>
+          <ProductText size="18px">{data.productName}</ProductText>
           <RateBox>
             <span>{`${data.minRate} ~ ${data.maxRate}%`}</span>
           </RateBox>

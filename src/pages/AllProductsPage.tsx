@@ -8,7 +8,7 @@ import SpinLoadingLayout from '../shared/util/ui/SpinLoadingLayout';
 import useIntersectionObserver from '../hooks/useIntersectionObserver';
 import { ReturnProductType } from '../store/slices/productSlice';
 import { useAppDispatch, useAppSelector } from '../store/store';
-import SearchLoan from '../components/bottomnavigation/SearchLoan';
+import SearchLoan from '../components/searchloan/SearchLoan';
 
 interface ContentType {
   age: number;
@@ -27,8 +27,10 @@ interface ContentType {
 }
 
 const Container = styled.div`
-  margin: 27px 0 0 0;
+  position: relative;
+  padding-top: 10px;
   overflow: scroll;
+  z-index: 1;
 `;
 
 // const Target = styled.div`
@@ -40,12 +42,14 @@ const ButtonArea = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 0 auto;
   margin-bottom: 100px;
+  width: 90%;
 `;
 
 const Button = styled.button`
-  padding: 6px 11px;
-  font-size: 17px;
+  padding: 5px 9px;
+  font-size: 15px;
   font-weight: 700;
   color: #fff;
   background-color: #0066f6;
@@ -95,8 +99,8 @@ const AllProductsPage = () => {
   return (
     <>
       <TopNavigation />
-      <SearchLoan />
       <Container>
+        <SearchLoan />
         {data &&
           data.content.map((element, index) => {
             return (

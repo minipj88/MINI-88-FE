@@ -12,8 +12,9 @@ const Wrapper = styled.div`
   left: 0;
   display: flex;
   /* justify-content: space-around; */
-  background: #FFFFFF;
+  background: #ffffff;
   box-shadow: 0px -2px 8px rgba(0, 0, 0, 0.08);
+  z-index: 9;
   a {
     display: flex;
     flex-grow: 1;
@@ -24,19 +25,19 @@ const Wrapper = styled.div`
     width: calc(100% / 3);
     box-sizing: border-box;
   }
-`
+`;
 
 const ButtonLinkLayout = () => {
   return (
     <Wrapper>
-        <Link to="/">
-          <MyProductTab/>
-        </Link>
+      <Link to="/">
+        <MyProductTab />
+      </Link>
       <Link to="/allproducts">
-        <AllProductTab/>
+        <AllProductTab />
       </Link>
       <Link to="/creditscore">
-        <CreditscoreTab/>
+        <CreditscoreTab />
       </Link>
     </Wrapper>
   );
