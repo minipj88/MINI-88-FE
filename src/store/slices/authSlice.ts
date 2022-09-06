@@ -10,18 +10,18 @@ interface ReturnSignupType {
     job: string;
     age: string;
     profilePhoto: string;
-    email:string;
+    email: string;
   }
 }
 
 interface ReturnSigninType {
-  email:string;
-  name:string;
-  profilePhoto:string;
-  job:string;
-  age:number;
-  credit:number;
-  point:number;
+  email: string;
+  name: string;
+  profilePhoto: string;
+  job: string;
+  age: number;
+  credit: number;
+  point: number;
 }
 
 interface ActionSignupType {
@@ -33,67 +33,67 @@ interface ActionSignupType {
   profilePhoto: string;
 }
 
-  export const authApi = createApi({
-    reducerPath: 'auth/authApi',
-    tagTypes: ['Auth'],
-    baseQuery: fetchBaseQuery({
-      baseUrl: import.meta.env.VITE_BASE_URL,
+export const authApi = createApi({
+  reducerPath: 'auth/authApi',
+  tagTypes: ['Auth'],
+  baseQuery: fetchBaseQuery({
+    baseUrl: import.meta.env.VITE_BASE_URL,
+  }),
+  endpoints: (builder) => ({
+    signup: builder.mutation<ReturnSignupType, ActionSignupType>({
+      query: (data) => ({
+        url: 'register',
+        method: 'POST',
+        body: data
+      })
     }),
-    endpoints: (builder) => ({
-      signup: builder.mutation<ReturnSignupType, ActionSignupType>({
-        query: (data) => ({
-          url: 'register',
-          method: 'POST',
-          body: data
-        })
-      }),
-      signin: builder.mutation<ReturnSigninType, Partial<ActionSignupType>>({
-        query: (data) => ({
-          url: 'login',
-          method: 'POST',
-          body: data
-        })
-      }),
-      getMember: builder.query<ReturnSignupType, Partial<ActionSignupType>>({
-        query: (data) => ({
-          url: 'login',
-          method: 'POST',
-          body: data
-        })
+    signin: builder.mutation<ReturnSigninType, Partial<ActionSignupType>>({
+      query: (data) => ({
+        url: 'login',
+        method: 'POST',
+        body: data
+      })
+    }),
+    getMember: builder.query<ReturnSignupType, Partial<ActionSignupType>>({
+      query: (data) => ({
+        url: 'login',
+        method: 'POST',
+        body: data
       })
     })
   })
+})
 
- export interface UserInfo {
-    userData: {
-      age:number;
-      credit:number;
-      point:number;
-      email:string;
-      job:string;
-      name:string;
-      profilePhoto:string;
-    }
-    
-  }
-
-const initialState:UserInfo = {
+export interface UserInfo {
   userData: {
-    age:0,
-    credit:0,
-    point:0,
-    email:'',
-    job:'',
-    name:'',
-    profilePhoto:'',
+    age: number;
+    credit: number;
+    point: number;
+    email: string;
+    job: string;
+    name: string;
+    profilePhoto: string;
   }
-} 
+
+}
+
+const initialState: UserInfo = {
+  userData: {
+    age: 0,
+    credit: 0,
+    point: 0,
+    email: '',
+    job: '',
+    name: '',
+    profilePhoto: '',
+  }
+}
 
 const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    getUser(state, action:PayloadAction<UserInfo["userData"]>) {
+    getUser(state, action: PayloadAction<UserInfo["userData"]>) {
       // state.userData = action.payload;
       state.userData.age = action.payload.age
       state.userData.credit = action.payload.credit
@@ -119,7 +119,7 @@ const authSlice = createSlice({
 
 
 export const { useSigninMutation, useSignupMutation } = authApi
-export const {getUser,logout} = authSlice.actions;
+export const { getUser, logout } = authSlice.actions;
 export const authReducer = authSlice.reducer;
 
 
