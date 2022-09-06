@@ -1,3 +1,4 @@
+import { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
 
@@ -19,35 +20,39 @@ interface ContentObjectType {
 }
 export interface ReturnProductType {
   content: ContentObjectType[];
-  totalPages: number;
-}
-interface ActionProductPagingType {
-  pageNumber: number;
+  totalPages?: number;
 }
 
 export const productApi = createApi({
   reducerPath: 'product/productApi',
+  tagTypes: ['product'],
   baseQuery: fetchBaseQuery({
     baseUrl: import.meta.env.VITE_BASE_URL,
   }),
   endpoints: (builder) => ({
-    getProductList: builder.query<ReturnProductType, ActionProductPagingType>({
-      query: ({ pageNumber }) => ({
+    getProductList: builder.query<ReturnProductType, number>({
+      query: (pageNumber) => ({
         url: `main?page=${pageNumber}`,
       }),
     }),
   }),
 });
 
-const initialState = {};
+const initialState: ReturnProductType = {
+  content: [],
+};
 
 const productSlice = createSlice({
-  name: 'product',
+  name: 'products',
   initialState,
-  reducers: {},
+  reducers: {
+    getProduct(state, action: PayloadAction<ReturnProductType['content']>) {
+      state.content = [...action.payload];
+    },
+  },
 });
 
 // createAPi export 하기
 export const { useGetProductListQuery } = productApi;
-
+export const { getProduct } = productSlice.actions;
 export const productReducer = productSlice.reducer;
