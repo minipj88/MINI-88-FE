@@ -35,9 +35,7 @@ const EditProfile = ({ selectedImage, setSelectedImage, imageInputRef, changeMod
       imageChangeHandler={imageChangeHandler}
       setSelectedImage={setSelectedImage}
       type="edit"
-     >
-      
-     </ProfileLayout>
+    />
   );
 };
 

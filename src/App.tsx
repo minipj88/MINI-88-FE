@@ -38,6 +38,7 @@ function App() {
           <Route path="/" element={<OnBoardingPage/>} />
           <Route path="/signup" element={<SignupPage/>} />
           <Route path="/signin" element={<SigninPage/>} />
+          <Route path="*" element={<NotFoundPage/>} />
         </Routes>
       </BrowserRouter>  
     )
