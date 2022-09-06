@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 const Wrapper = styled.div`
   position: relative;
@@ -11,12 +11,12 @@ const Wrapper = styled.div`
     left: 50%;
     transform: translate(-50%, -50%);
   }
-`
+`;
 
 interface GreetingProps {
-  onClick: () => void
+  onClick: () => void;
 }
-const Greeting = ({onClick}:GreetingProps) => {
+const Greeting = ({ onClick }: GreetingProps) => {
   return (
     <Wrapper onClick={onClick}>
       <img src="/logo.png" alt="" />

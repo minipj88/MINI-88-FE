@@ -21,7 +21,7 @@ const SlideBox = styled.div`
   background-color: #fff;
   width: 100%;
   height: 100%;
-  display: ${(props) => props['aria-current'] ==='page' ? "block" : "none"};
+  display: ${(props) => (props['aria-current'] === 'page' ? 'block' : 'none')};
 `;
 const SkipButton = styled.button`
   position: absolute;
@@ -39,24 +39,21 @@ const SkipButton = styled.button`
   z-index: 1;
   background: #fff;
   border: none;
-  
 `;
-
-
 
 const GreetingCarousel = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const nextpageHandler = () => {
-    if(currentPage === 3) return;
-    setCurrentPage(prev => prev+=1)
-  }
+    if (currentPage === 3) return;
+    setCurrentPage((prev) => (prev += 1));
+  };
   const carouselSkipHandler = () => {
-    setCurrentPage(3)
-  }
+    setCurrentPage(3);
+  };
   return (
     <SliceContainer>
-      {currentPage !==3 && <SkipButton onClick={carouselSkipHandler}>SKIP</SkipButton>}
-      
+      {currentPage !== 3 && <SkipButton onClick={carouselSkipHandler}>SKIP</SkipButton>}
+
       <SlideBox aria-current={0 === currentPage ? 'page' : undefined}>
         <GreetingInfo1 />
       </SlideBox>
@@ -70,17 +67,24 @@ const GreetingCarousel = () => {
         <GreetingAndRegister />
       </SlideBox>
 
+      {currentPage !== 3 && <DotBox currentPage={currentPage} />}
 
-      {currentPage !== 3 && <DotBox currentPage={currentPage}/>}
+      {currentPage !== 3 && (
+        <Button
+          onClick={nextpageHandler}
+          width="138px"
+          text="Next"
+          height="50px"
+          color="white"
+          bgColor="#0066f6"
+          totalValid={true}
+        />
+      )}
 
-      {currentPage !== 3 && <Button onClick={nextpageHandler} width="138px" text='Next' height='50px' color='white' bgColor='#0066f6' totalValid={true}/>}
-      
       {currentPage === 3 && <AuthButtons />}
-      
     </SliceContainer>
   );
 };
-
 
 // width: string;
 // height: string;
