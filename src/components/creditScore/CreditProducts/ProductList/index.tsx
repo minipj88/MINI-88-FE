@@ -32,11 +32,11 @@ const Text = styled.span<TextProps>`
 function ProductList() {
   const [listPage, setListPage] = useState<number>(0);
   const { data: ProductsResponse, isLoading, error, isError } = useGetProductsQuery(listPage);
-  const [productList, setProductList] = useState(null);
+  const [productList, setProductList] = useState<any>(null);
 
   useEffect(() => {
     if (productList) {
-      setProductList([...productList, ...ProductsResponse?.content]);
+      setProductList([...productList, ...ProductsResponse!.content]);
     } else {
       setProductList(ProductsResponse?.content);
     }
@@ -51,7 +51,7 @@ function ProductList() {
   return (
     <Container>
       {productList &&
-        productList.map((item: object, index: number) => {
+        productList.map((item: any, index: number) => {
           return (
             <ProductsBox key={index}>
               <LogoBox>
