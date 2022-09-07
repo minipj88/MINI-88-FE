@@ -33,7 +33,7 @@ export const productApi = createApi({
     getProductList: builder.query<ReturnProductType, number>({
       query: (pageNumber) => ({
         url: `main?page=${pageNumber}`,
-        transformResponse: (response:string) => JSON.parse(response)
+        // transformResponse: (response:string) => JSON.parse(response)
       }),
     }),
   }),

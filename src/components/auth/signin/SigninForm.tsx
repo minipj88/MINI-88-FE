@@ -19,6 +19,9 @@ const SigninForm = () => {
   });
   const { validateEmail, validatePassword } = useValid();
   const [login, { data, isLoading, error, isError }] = useSigninMutation();
+  const navigate = useNavigate();
+  
+
   const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const {
       currentTarget: { value, name },
@@ -28,14 +31,19 @@ const SigninForm = () => {
       [name]: value,
     });
   };
-  const navigate = useNavigate();
+  
 
-  const signInHandler = async () => {
-    await login(formValue).then(() => {
-      alert('로그인이 완료되었습니다. 메인페이지로 이동합니다.');
-      navigate('/');
-      location.reload();
-    });
+  const signInHandler =  () => {
+    
+       login(formValue)
+       .unwrap()
+       .then((response) => {
+        // alert('로그인이 완료되었습니다. 메인페이지로 이동합니다.');
+        // navigate('/');
+        // location.reload();
+      })
+      .catch((error) => alert(`알수없는 에러로 인해 로그인에 실패하였습니다.`));
+    
   };
   useEffect(() => {
     if (!data) return;
@@ -45,7 +53,7 @@ const SigninForm = () => {
   useEffect(() => {
     setTotalValid(validateEmail(formValue.email) && validatePassword(formValue.password));
   }, [formValue]);
-
+  
   return (
     <AuthLayout title="로그인" description="Eight에 로그인합니다.">
       <SigninInputs

@@ -62,13 +62,15 @@ const SignupForm = () => {
       age: formValue.age,
       password: formValue.password,
       profilePhoto:formValue.profilePhoto
-    }).then(() => {
+    }).unwrap().then(() => {
       alert('회원가입이 완료되었습니다. 로그인 페이지로 이동합니다.')
       navigate('/signin')
+    }).catch(() => {
+      alert('알 수 없는 오류로 인해 회원가입에 실패하였습니다.')
     })
     
   }
-  
+  console.log(document.cookie);
   
   return (
     <AuthLayout title="계정 생성" description='세부 정보를 입력해주세요.'>

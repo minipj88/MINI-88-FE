@@ -60,5 +60,6 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <GlobalStyle />
     <App />
   </Provider>
+	
   
 )

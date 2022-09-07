@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createApi, fetchBaseQuery, } from '@reduxjs/toolkit/query/react';
 
 interface ReturnSignupType {
   data: {
@@ -37,6 +37,7 @@ export const authApi = createApi({
   tagTypes: ['Auth'],
   baseQuery: fetchBaseQuery({
     baseUrl: import.meta.env.VITE_BASE_URL,
+    
   }),
   endpoints: (builder) => ({
     signup: builder.mutation<ReturnSignupType, ActionSignupType>({

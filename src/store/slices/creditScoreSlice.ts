@@ -29,6 +29,10 @@ export const userCreditApi = createApi({
   reducerPath: 'userCreditApi',
   baseQuery: fetchBaseQuery({
     baseUrl: import.meta.env.VITE_BASE_URL,
+    prepareHeaders(headers) {
+      return headers
+    },
+    
   }),
   endpoints: (builder) => ({
     getProducts: builder.query<ReturnProductType, number>({
